@@ -1,0 +1,108 @@
+.custom-bg {
+    background-color: #202020;
+}
+
+.form_container {
+    width: 700px;
+    height: 100%;
+}
+
+@media screen and (max-width: 1000px) {
+    .form_container {
+        width: 45%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .form_container {
+        width: 65%;
+    }
+}
+
+.navBg {
+    background-color: #202020;
+}
+
+.navBg2 {
+    background-color: #202020;
+}
+
+.custom-bg-color {
+    background-color: #202020;
+}
+
+.custom-left-bg-color {
+    background-color: #e0e0e0;
+}
+
+.carousel img {
+    height: auto;
+}
+
+.carousel-indicators [data-bs-target] {
+    border-radius: 100%;
+    width: 10px;
+    height: 10px;
+}
+
+input[type=radio] {
+    display: none;
+}
+
+.star {
+    cursor: pointer;
+    height: 40px;
+    padding: 5px;
+}
+
+.centered-carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 500px; */
+    /* Ajusta la altura según tus necesidades */
+}
+
+.centered-image {
+    /* max-width: 100%; */
+    height: auto;
+    margin: 0 auto;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    /* padding: 100px; */
+}
+
+.sub-titulo{
+    max-width: 650px;
+    text-align: center;
+}
+
+.d-grid{
+    padding-top: 5px;
+}
