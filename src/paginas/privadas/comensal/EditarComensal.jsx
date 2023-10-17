@@ -1,4 +1,3 @@
-// import { Link } from 'react-router-dom'
 import { BarraDeNavComensal } from '../../../navBar/Index'
 import '../../../estilos/Estilos.css'
 

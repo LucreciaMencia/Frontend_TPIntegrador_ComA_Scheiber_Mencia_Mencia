@@ -166,13 +166,13 @@ export class InternalLogin extends Component {
                             <br></br>
 
 
-                            <Link to="/registro" className='me-2'>
+                            <Link to="/registroRestaurante" className='me-2'>
                                 <button
                                     className='btn btn-outline-secondary'>
                                     Registrarme como restaurante
                                 </button>
                             </Link>
-                            <Link to="/registro">
+                            <Link to="/registroComensal">
                                 <button
                                     className='btn btn-outline-secondary'>
                                     Registrarme como comensal

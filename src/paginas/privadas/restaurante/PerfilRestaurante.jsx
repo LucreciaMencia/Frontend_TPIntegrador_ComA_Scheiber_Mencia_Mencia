@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-
 import { InformacionRestaurante, FoodCard } from '../../../componentes/Index';
 import { BarraDeNavRestaurante } from '../../../navBar/Index'
+
 
 
 
@@ -26,7 +26,7 @@ function PerfilRestaurante() {
       .then((data) => {
         setInfo(data)
       });
-  }, [])
+  }, [token])
 
   return (
     <>
