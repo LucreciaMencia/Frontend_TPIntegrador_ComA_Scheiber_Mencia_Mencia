@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css'
 
 
 
-export class InternalRegistro extends Component {
+export class InternalRegistroComensal extends Component {
 
     constructor(props) {
         super(props)
@@ -172,17 +172,13 @@ export class InternalRegistro extends Component {
 
 }
 
-export default InternalRegistro
 
-export function RegistroComensal() {
+export default function RegistroComensal() {
     const p = useParams();
 
     const navigate = useNavigate();
-    return (
-        <>
-            <InternalRegistro navigate={navigate} params={p} />
-        </>
-    );
+
+    return  <InternalRegistroComensal navigate={navigate} params={p} />
 }
 
 

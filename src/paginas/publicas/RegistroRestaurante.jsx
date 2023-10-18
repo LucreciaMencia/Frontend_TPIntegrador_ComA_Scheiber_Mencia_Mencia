@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css'
 
 
 
-export class InternalRegistro extends Component {
+export class InternalRegistroRestaurante extends Component {
 
     constructor(props) {
         super(props)
@@ -72,7 +72,9 @@ export class InternalRegistro extends Component {
                             progress: undefined,
                             theme: "light",
                         });
-                        this.props.navigate('/iniciarSesion')
+                        
+                        this.props.navigate("/perfilRestaurante")
+
                     } else {
                         toast.error(result.body.message, {
                             position: "bottom-center",
@@ -202,15 +204,12 @@ export class InternalRegistro extends Component {
 
 }
 
-export default InternalRegistro
 
-export function RegistroRestaurante() {
+export default function RegistroRestaurante() {
     const p = useParams();
 
     const navigate = useNavigate();
-    return (
-        <>
-            <InternalRegistro navigate={navigate} params={p} />
-        </>
-    );
+
+    return  <InternalRegistroRestaurante navigate={navigate} params={p} />
+
 }
