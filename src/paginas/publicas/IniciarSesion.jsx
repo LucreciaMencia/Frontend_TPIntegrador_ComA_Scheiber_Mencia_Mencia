@@ -12,16 +12,16 @@ export class InternalLogin extends Component {
         super(props)
 
         this.state = {
-            mail: '',
+            nickname: '',
             password: ''
         }
     }
-
+    
     handleSubmit = (event) => {
         event.preventDefault()
 
         let usuario = {
-            mail: this.state.mail,
+            nickname: this.state.nickname,
             password: this.state.password
         }
 
@@ -60,8 +60,7 @@ export class InternalLogin extends Component {
                             theme: "light",
                         });
 
-                        const tokenDecoded = jwt_decode(result.body)
-                        if (tokenDecoded.rol === "restaurante") {
+                        if (result.body.rol === "restaurante") {
                             this.props.navigate("/perfilRestaurante")
                         } else {
                             this.props.navigate("/muroComensal")
@@ -119,14 +118,14 @@ export class InternalLogin extends Component {
                         <form onSubmit={this.handleSubmit} style={estilo}>
                             <h3 className='text-center'>Iniciar Sesión</h3>
                             <div className='mb-2'>
-                                <label htmlFor='mail'>Email</label>
+                                <label htmlFor='nickname'>Nickname</label>
                                 <input
-                                    type="email"
-                                    placeholder='Ingrese su correo'
+                                    type="text"
+                                    placeholder='Ingrese su nickname'
                                     className='form-control'
                                     onChange={this.handleChange}
-                                    value={this.state.mail}
-                                    name='mail'>
+                                    value={this.state.nickname}
+                                    name='nickname'>
                                 </input>
                             </div>
                             <div className='mb-2'>
