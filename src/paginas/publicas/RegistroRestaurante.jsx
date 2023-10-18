@@ -122,7 +122,7 @@ export class InternalRegistro extends Component {
                 <div className='login template d-flex justify-content-center align-items-center bg-white'>
                     <div className='form_container p-5 rounded custom-bg'>
                         <form onSubmit={this.handleSubmit} style={estilo}>
-                            <h3 className='text-center'>Registrarme como comensal</h3>
+                            <h3 className='text-center'>Registrarme como restaurante</h3>
                             <br></br>
 
                             <div className='mb-2'>
