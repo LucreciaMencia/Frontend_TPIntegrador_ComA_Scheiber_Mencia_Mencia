@@ -1,0 +1,1 @@
+export { crearComensal, obtenerComensal, editarComensal, borrarComensal };

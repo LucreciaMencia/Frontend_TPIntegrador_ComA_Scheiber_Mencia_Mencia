@@ -178,7 +178,7 @@ export default function RegistroComensal() {
 
     const navigate = useNavigate();
 
-    return  <InternalRegistroComensal navigate={navigate} params={p} />
+    return <InternalRegistroComensal navigate={navigate} params={p} />
 }
 
 

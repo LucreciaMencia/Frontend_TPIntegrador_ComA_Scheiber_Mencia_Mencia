@@ -1,1 +1,1 @@
-export 
+export { crearRestaurante, obtenerRestaurante, editarRestaurante, borrarRestaurante };

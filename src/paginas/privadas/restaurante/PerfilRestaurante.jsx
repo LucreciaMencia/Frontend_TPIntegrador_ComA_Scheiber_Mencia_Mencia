@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { InformacionRestaurante, FoodCard } from '../../../componentes/Index';
-import { BarraDeNavRestaurante } from '../../../navBar/Index'
-
+import { BarraDeNavRestaurante } from '../../../navBar/Index';
+import { ObtenerRestaurante } from '../../../api/restaurante';
+import { ObtenerComidas } from '../../../api/comida';
 
 
 
@@ -13,15 +14,15 @@ function PerfilRestaurante() {
   const [comidas, setComidas] = useState([])
   const [infoRestaurante, setInfo] = useState('')
 
-  const id_restaurante = 4; //llamar id_usuario y guardar el valor del id del usuario extraido del token
+  const id_usuario = 4; //llamar id_usuario y guardar el valor del id del usuario extraido del token
 
   useEffect(() => {
     // Ni bien se renderiza este componente, se hace el siguiente request
-    ObtenerComidas(id_restaurante)
+    ObtenerComidas(id_usuario)
       .then((res) => res.json())
       .then(setComidas);
 
-    ObtenerRestaurante(id_restaurante, token)
+    ObtenerRestaurante(id_usuario, token)
       .then((res) => res.json())
       .then((data) => {
         setInfo(data)
@@ -63,15 +64,6 @@ function PerfilRestaurante() {
     </>
   )
 }
-
-function ObtenerComidas(id_restaurante) {
-  let parametros = {
-    method: 'GET'
-  }
-  return fetch(`http://localhost:8080/comida?restaurante=${id_restaurante}`, parametros)
-}
-
-
 
 export default PerfilRestaurante
 
