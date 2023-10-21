@@ -13,7 +13,7 @@ function PerfilRestaurante() {
   const [comidas, setComidas] = useState([])
   const [infoRestaurante, setInfo] = useState('')
 
-  const id_restaurante = 2;
+  const id_restaurante = 4; //llamar id_usuario y guardar el valor del id del usuario extraido del token
 
   useEffect(() => {
     // Ni bien se renderiza este componente, se hace el siguiente request

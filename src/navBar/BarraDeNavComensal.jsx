@@ -6,13 +6,16 @@ import '../estilos/Estilos.css'
 
 
 
-function BarraDeNavComensal() {
+function BarraDeNavComensal(props) {
   return (
     <>
       <Navbar expand="lg" className="navBg" variant='dark'>
         <Container>
-          <Navbar.Brand as={Link} to="/perfilComensal">Lucrecia</Navbar.Brand>
+          
+          <Navbar.Brand as={Link} to="/perfilComensal">{props.nombre_comensal}</Navbar.Brand>
+          
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link as={Link} to="/muroComensal">Ver comidas</Nav.Link>

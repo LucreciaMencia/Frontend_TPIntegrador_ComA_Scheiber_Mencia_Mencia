@@ -66,7 +66,7 @@ export class InternalRegistroComensal extends Component {
                             progress: undefined,
                             theme: "light",
                         });
-                        this.props.navigate('/iniciarSesion')
+                        this.props.navigate('/muroComensal')
                     } else {
                         toast.error(result.body.message, {
                             position: "bottom-center",
