@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { InformacionRestaurante, FoodCard } from '../../../componentes/Index';
 import { BarraDeNavRestaurante } from '../../../navBar/Index';
-import { ObtenerRestaurante } from '../../../api/restaurante';
-import { ObtenerComidas } from '../../../api/comida';
+import { obtenerRestaurante } from '../../../api/restaurante';
+import { obtenerComidas } from '../../../api/comida';
 
 
 
@@ -18,11 +18,11 @@ function PerfilRestaurante() {
 
   useEffect(() => {
     // Ni bien se renderiza este componente, se hace el siguiente request
-    ObtenerComidas(id_usuario)
+    obtenerComidas(id_usuario)
       .then((res) => res.json())
       .then(setComidas);
 
-    ObtenerRestaurante(id_usuario, token)
+    obtenerRestaurante(id_usuario, token)
       .then((res) => res.json())
       .then((data) => {
         setInfo(data)

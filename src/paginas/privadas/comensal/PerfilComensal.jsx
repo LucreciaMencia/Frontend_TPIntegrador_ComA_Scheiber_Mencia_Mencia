@@ -1,4 +1,5 @@
 import { BarraDeNavComensal } from '../../../navBar/Index'
+import { obtenerComensal } from '../../../api/comensal/index'
 
 function PerfilComensal() {
   return (
