@@ -71,18 +71,7 @@ function ObtenerComidas(id_restaurante) {
   return fetch(`http://localhost:8080/comida?restaurante=${id_restaurante}`, parametros)
 }
 
-function ObtenerRestaurante(id_restaurante, token) {
 
-  const headers = {
-    'Authorization': `Bearer ${token}`
-  }
-
-  let parametros = {
-    method: 'GET',
-    headers: headers
-  }
-  return fetch(`http://localhost:8080/restaurante/${id_restaurante}`, parametros)
-}
 
 export default PerfilRestaurante
 
