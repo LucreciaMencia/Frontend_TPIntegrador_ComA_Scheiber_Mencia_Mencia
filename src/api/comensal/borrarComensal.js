@@ -1,3 +1,3 @@
-function BorrarComensal() {
+export default function borrarComensal() {
     
 }

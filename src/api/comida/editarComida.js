@@ -1,3 +1,3 @@
-function EditarComida() {
+export default function editarComida() {
     
 }

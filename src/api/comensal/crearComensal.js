@@ -1,3 +1,3 @@
-function CrearComensal() {
+export default function crearComensal() {
 
 }

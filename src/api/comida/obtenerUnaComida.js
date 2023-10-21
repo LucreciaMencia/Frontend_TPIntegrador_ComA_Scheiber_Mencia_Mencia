@@ -1,3 +1,3 @@
-function ObtenerUnaComida() {
+export default function obtenerUnaComida() {
     
 }

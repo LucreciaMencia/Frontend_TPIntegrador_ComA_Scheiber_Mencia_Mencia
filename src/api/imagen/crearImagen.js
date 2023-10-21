@@ -1,3 +1,3 @@
-function CrearImagen() {
+export default function crearImagen() {
     
 }

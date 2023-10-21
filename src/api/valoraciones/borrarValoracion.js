@@ -1,3 +1,3 @@
-function BorrarValoracin() {
+export default function borrarValoracin() {
     
 }

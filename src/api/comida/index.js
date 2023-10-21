@@ -1,1 +1,5 @@
-export { crearComida, obtenerUnaComida, obtenerComidas, editarComida, borrarComida };
+export { default as crearComida } from './crearComida'
+export { default as obtenerUnaComida } from './obtenerUnaComida'
+export { default as obtenerComidas } from './obtenerComidas'
+export { default as editarComida } from './editarComida'
+export { default as borrarComida } from './borrarComida'

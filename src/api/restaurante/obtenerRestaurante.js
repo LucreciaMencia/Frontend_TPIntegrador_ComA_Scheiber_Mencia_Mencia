@@ -1,4 +1,4 @@
-function ObtenerRestaurante(id_restaurante, token) {
+export default function obtenerRestaurante(id_restaurante, token) {
 
     const headers = {
         'Authorization': `Bearer ${token}`

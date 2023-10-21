@@ -1,3 +1,3 @@
-function ObtenerImagen() {
+export default function obtenerImagen() {
     
 }

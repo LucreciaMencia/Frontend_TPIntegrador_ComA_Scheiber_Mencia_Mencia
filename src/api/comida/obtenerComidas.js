@@ -1,4 +1,4 @@
-function ObtenerComidas(id_restaurante) {
+export default function obtenerComidas(id_restaurante) {
     let parametros = {
       method: 'GET'
     }

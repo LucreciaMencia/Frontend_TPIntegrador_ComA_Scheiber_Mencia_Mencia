@@ -1,3 +1,3 @@
-function EditarUsuario() {
+export default function editarUsuario() {
     
 }

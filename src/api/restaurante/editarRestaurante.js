@@ -1,3 +1,3 @@
-function EditarRestaurante() {
+export default function editarRestaurante() {
     
 }

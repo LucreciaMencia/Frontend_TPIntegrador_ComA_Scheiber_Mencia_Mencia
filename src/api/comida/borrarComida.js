@@ -1,3 +1,3 @@
-function BorrarComida() {
+export default function borrarComida() {
     
 }

@@ -66,12 +66,3 @@ function PerfilRestaurante() {
 }
 
 export default PerfilRestaurante
-
-//Voy a tener un array de comidas, y por cada comida que haya en el array se bede crear una FoodCard
-
-/*
-Pedirle a jp:
-pedirle en cada endpoint que me devuelva cada dato.
-
-
-*/

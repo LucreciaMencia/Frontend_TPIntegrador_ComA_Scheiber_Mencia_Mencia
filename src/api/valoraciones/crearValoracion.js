@@ -1,3 +1,3 @@
-function CrearValoracion() {
+export default function crearValoracion() {
     
 }

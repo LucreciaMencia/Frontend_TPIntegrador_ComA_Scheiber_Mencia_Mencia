@@ -1,3 +1,3 @@
-function ObtenerComensal() {
+export default function obtenerComensal() {
     
 }

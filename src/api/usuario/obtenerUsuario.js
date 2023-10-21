@@ -1,3 +1,3 @@
-function ObtenerUsuario() {
+export default function obtenerUsuario() {
     
 }

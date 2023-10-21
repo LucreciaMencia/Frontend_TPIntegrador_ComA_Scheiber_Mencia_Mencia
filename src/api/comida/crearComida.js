@@ -1,3 +1,3 @@
-function CrearComida() {
+export default function crearComida() {
     
 }

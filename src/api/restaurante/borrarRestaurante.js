@@ -1,3 +1,3 @@
-function BorrarRestaurante() {
+export default function borrarRestaurante() {
     
 }

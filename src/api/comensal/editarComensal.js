@@ -1,3 +1,3 @@
-function EditarComensal() {
+export default function editarComensal() {
     
 }

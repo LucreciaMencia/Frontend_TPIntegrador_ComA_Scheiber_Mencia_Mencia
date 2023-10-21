@@ -1,3 +1,3 @@
-function CrearUsuario() {
+export default function crearUsuario() {
     
 }
