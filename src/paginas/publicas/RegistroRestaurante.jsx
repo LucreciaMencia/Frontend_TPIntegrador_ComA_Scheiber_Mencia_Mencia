@@ -5,6 +5,7 @@ import { BarraDeNavInicio } from '../../navBar/Index'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 // import Form from 'react-bootstrap/Form';
+import { crearRestaurante } from '../../api/restaurante/index'
 
 
 
@@ -38,15 +39,8 @@ export class InternalRegistroRestaurante extends Component {
             descripcion: this.state.descripcion
         }
 
-        let parametros = {
-            method: 'POST',
-            body: JSON.stringify(usuario),
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        }
-
-        fetch("http://localhost:8080/usuario/restaurante", parametros)
+       
+            crearRestaurante(usuario)            
             .then(res => {
                 return res.json()
                     .then(body => {
