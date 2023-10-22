@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { InformacionRestaurante, FoodCard } from '../../../componentes/Index';
 import { BarraDeNavRestaurante } from '../../../navBar/Index';
+
+//importo funciones
 import { obtenerRestaurante } from '../../../api/restaurante';
 import { obtenerComidas } from '../../../api/comida';
 
@@ -14,7 +16,7 @@ function PerfilRestaurante() {
   const [comidas, setComidas] = useState([])
   const [infoRestaurante, setInfo] = useState('')
 
-  const id_usuario = 4; //llamar id_usuario y guardar el valor del id del usuario extraido del token
+  const id_usuario = 4; //guardar el valor del id del usuario extraido del token
 
   useEffect(() => {
     // Ni bien se renderiza este componente, se hace el siguiente request

@@ -1,4 +1,4 @@
-export default function obtenerRestaurante(id_restaurante, token) {
+export default function obtenerRestaurante(id_usuario, token) {
 
     const headers = {
         'Authorization': `Bearer ${token}`
@@ -8,6 +8,6 @@ export default function obtenerRestaurante(id_restaurante, token) {
         method: 'GET',
         headers: headers
     }
-    return fetch(`http://localhost:8080/restaurante/${id_restaurante}`, parametros)
+    return fetch(`http://localhost:8080/restaurante/${id_usuario}`, parametros)
 }
 
