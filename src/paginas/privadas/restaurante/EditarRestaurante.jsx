@@ -37,9 +37,9 @@ export class InternalEditarRestaurante extends Component {
       
             fetch(`http://localhost:8080/usuario/restaurante/${this.props.params.id_usuario}`, parametros)
                 .then(res => {
-                    return res.json()
-                        .then(body => {
-                            return {
+                    return res.json() //se convierte la respuesta en un json
+                        .then(body => { 
+                            return { //se crea un objeto donde se copian algunos datos de la respuesta y el body
                                 status: res.status,
                                 ok: res.ok,
                                 headers: res.headers,

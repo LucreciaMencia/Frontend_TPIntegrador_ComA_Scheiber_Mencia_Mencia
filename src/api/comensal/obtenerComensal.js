@@ -1,7 +1,7 @@
 export default function obtenerComensal(id_usuario) {
 
-    return {
+    return Promise.resolve({
         "nombre": "Juan",
         "apellido": "menscia"
-    }
+    })
 }

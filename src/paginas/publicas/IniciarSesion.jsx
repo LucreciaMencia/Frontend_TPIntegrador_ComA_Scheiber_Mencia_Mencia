@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import '../../estilos/Estilos.css'
 import { BarraDeNavInicio } from '../../navBar/Index'
-import { useNavigate, useParams, Link } from 'react-router-dom'
+import { useNavigate, useParams, Link, useLoaderData } from 'react-router-dom'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import jwt_decode from 'jwt-decode';
@@ -188,6 +188,11 @@ export class InternalLogin extends Component {
 
 
 export default function IniciarSesion() {
+
+    console.log("Soy el componente Iniciar sesion")
+    const data = useLoaderData();
+    console.log("Recibi esto: ", data)
+
     const p = useParams();
 
     const navigate = useNavigate();

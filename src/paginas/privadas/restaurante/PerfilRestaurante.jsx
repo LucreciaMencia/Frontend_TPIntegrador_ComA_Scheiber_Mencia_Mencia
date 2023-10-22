@@ -1,35 +1,16 @@
-import { useEffect, useState } from 'react'
 import { InformacionRestaurante, FoodCard } from '../../../componentes/Index';
 import { BarraDeNavRestaurante } from '../../../navBar/Index';
-
-//importo funciones
-import { obtenerRestaurante } from '../../../api/restaurante';
-import { obtenerComidas } from '../../../api/comida';
+import { useLoaderData } from 'react-router-dom';
 
 
 
 
 function PerfilRestaurante() {
 
-  const token = sessionStorage.getItem('token')
+  const datos = useLoaderData();
 
-  const [comidas, setComidas] = useState([])
-  const [infoRestaurante, setInfo] = useState('')
-
-  const id_usuario = 4; //guardar el valor del id del usuario extraido del token
-
-  useEffect(() => {
-    // Ni bien se renderiza este componente, se hace el siguiente request
-    obtenerComidas(id_usuario)
-      .then((res) => res.json())
-      .then(setComidas);
-
-    obtenerRestaurante(id_usuario, token)
-      .then((res) => res.json())
-      .then((data) => {
-        setInfo(data)
-      });
-  }, [token])
+  const comidas = datos.comidas;
+  const infoRestaurante = datos.restaurante;
 
   return (
     <>
