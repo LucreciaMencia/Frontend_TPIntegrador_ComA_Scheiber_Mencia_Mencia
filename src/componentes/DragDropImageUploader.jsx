@@ -3,7 +3,7 @@ import { useState, useRef } from 'react'
 
 function DragDropImageUploader() {
 
-    const [images, setImages] = useState([]);
+    const [image, setImage] = useState();
     const [isDragging, setIsDragging] = useState(false);
     const fileInputRef = useRef(null);
 
@@ -23,24 +23,19 @@ function DragDropImageUploader() {
 
     function mostrarMiniaturas(files) {
         if (files.length === 0) return;
+
         for (let i = 0; i < files.length; i++) {
             if (files[i].type.split('/')[0] !== 'image') continue;
-            if (!images.some((e) => e.name === files[i].name)) {
-                setImages((prevImages) => [
-                    ...prevImages,
-                    {
-                        name: files[i].name,
-                        url: URL.createObjectURL(files[i]),
-                    },
-                ]);
-            }
+
+            setImage({
+                name: files[i].name,
+                url: URL.createObjectURL(files[i]),
+            });
         }
     }
 
     function deleteImage(index) {
-        setImages((prevImages) =>
-            prevImages.filter((_, i) => i !== index)
-        )
+        setImage(undefined)
     }
     function onDragOver(event) {
         event.preventDefault();
@@ -51,7 +46,6 @@ function DragDropImageUploader() {
     function onDragLeave(event) {
         event.preventDefault();
         setIsDragging(false);
-
     }
 
     function onDrop(event) {
@@ -78,16 +72,25 @@ function DragDropImageUploader() {
                         </span>
                     </>
                     )}
-                    <input name="file" type="file" className="file" multiple ref={fileInputRef} onChange={onFileSelect}></input>
+                    <input
+                        name="file"
+                        type="file"
+                        accept='image/*'
+                        className="file"
+                        ref={fileInputRef}
+                        onChange={onFileSelect}></input>
                 </div>
                 <div className="dragDrogContainer" >
                     {
-                        images.map((images, index) => (
-                            <div className='dragDrop-Image' key={index}>
-                                <span className='delete' onClick={() => deleteImage(index)}>&times;</span>
-                                <img src={images.url} alt={images.name} />
-                            </div>
-                        ))}
+                        image
+                            ? (
+                                <div className='dragDrop-Image'>
+                                    <span className='delete' onClick={() => deleteImage()}>&times;</span>
+                                    <img src={image.url} alt={image.name} />
+                                </div>
+                            )
+                            : null
+                    }
                 </div>
             </div>
         </div>
