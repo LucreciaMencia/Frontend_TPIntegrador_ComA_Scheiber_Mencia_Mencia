@@ -1,13 +1,20 @@
 import { BarraDeNavRestaurante } from '../../../navBar/Index'
 import { DragDropImageUploader } from '../../../componentes/Index'
+import { useState } from 'react'
 
 function CrearComida() {
+    console.log("crear comida")
+    
+    const [image, setImage] = useState();
+    console.log(image);
+
     const estilo = {
         color: 'white'
     }
 
     function onImagenSeleccionada(imageAttributes) {
-        console.log(imageAttributes)
+        setImage(imageAttributes)
+        console.log("imagen seteada")
     }
 
     return (
@@ -38,7 +45,7 @@ function CrearComida() {
                             <input type="text" placeholder='' className='form-control'></input>
                         </div>
                         <div>
-                            <DragDropImageUploader onImagenSeleccionada={onImagenSeleccionada}/>
+                            <DragDropImageUploader onImagenSeleccionada={onImagenSeleccionada} />
                         </div>
                         <div className='d-grid mt-2'>
                             <button className='btn btn-outline-secondary'>Crear</button>

@@ -72,7 +72,7 @@ function DragDropImageUploader(props) {
                     {isDragging ? (
                         <span className="select">Suelte la imagen aqui</span>
                     ) : (<>
-                        Sueltar aqui o {" "}
+                        Soltar aqui o {" "}
                         <span className="select" role='button' onClick={selectFiles}>
                             Cargar
                         </span>
