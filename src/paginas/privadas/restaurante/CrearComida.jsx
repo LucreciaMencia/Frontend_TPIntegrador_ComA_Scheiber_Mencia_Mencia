@@ -1,4 +1,5 @@
 import { BarraDeNavRestaurante } from '../../../navBar/Index'
+import { DragDropImageUploader } from '../../../componentes/Index'
 
 function CrearComida() {
     const estilo = {
@@ -28,8 +29,11 @@ function CrearComida() {
                             <input type="text" placeholder='' className='form-control'></input>
                         </div>
                         <div className='mb-2'>
-                            <label htmlFor='lname'>Primer agregado</label>
+                            <label htmlFor='lname'>Agregado</label>
                             <input type="text" placeholder='' className='form-control'></input>
+                        </div>
+                        <div>
+                            <DragDropImageUploader/>
                         </div>
                         <div className='d-grid mt-2'>
                             <button className='btn btn-outline-secondary'>Crear</button>

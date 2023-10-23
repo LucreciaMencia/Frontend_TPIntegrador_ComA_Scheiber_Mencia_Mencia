@@ -6,6 +6,7 @@ import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 // import Form from 'react-bootstrap/Form';
 import { crearRestaurante } from '../../api/restaurante/index'
+import { toastError, toastExitoso } from '../../utilerias/toast'
 
 
 
@@ -39,8 +40,8 @@ export class InternalRegistroRestaurante extends Component {
             descripcion: this.state.descripcion
         }
 
-       
-            crearRestaurante(usuario)            
+
+        crearRestaurante(usuario)
             .then(res => {
                 return res.json()
                     .then(body => {
@@ -56,30 +57,12 @@ export class InternalRegistroRestaurante extends Component {
                     if (result.ok) {
                         sessionStorage.setItem('token', result.body.token)
 
-                        toast.success("El usuario se ha registrado correctamente", {
-                            position: "bottom-center",
-                            autoClose: 5000,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            pauseOnHover: true,
-                            draggable: true,
-                            progress: undefined,
-                            theme: "light",
-                        });
-                        
+                        toastExitoso("El usuario se ha registrado correctamente")
+
                         this.props.navigate("/perfilRestaurante")
 
                     } else {
-                        toast.error(result.body.message, {
-                            position: "bottom-center",
-                            autoClose: 5000,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            pauseOnHover: true,
-                            draggable: true,
-                            progress: undefined,
-                            theme: "light",
-                        });
+                        toastError(result.body.message)
                     }
                 }
             ).catch(
@@ -204,6 +187,6 @@ export default function RegistroRestaurante() {
 
     const navigate = useNavigate();
 
-    return  <InternalRegistroRestaurante navigate={navigate} params={p} />
+    return <InternalRegistroRestaurante navigate={navigate} params={p} />
 
 }
