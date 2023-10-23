@@ -5,6 +5,11 @@ function CrearComida() {
     const estilo = {
         color: 'white'
     }
+
+    function onImagenSeleccionada(imageAttributes) {
+        console.log(imageAttributes)
+    }
+
     return (
         <>
             <nav>
@@ -33,7 +38,7 @@ function CrearComida() {
                             <input type="text" placeholder='' className='form-control'></input>
                         </div>
                         <div>
-                            <DragDropImageUploader/>
+                            <DragDropImageUploader onImagenSeleccionada={onImagenSeleccionada}/>
                         </div>
                         <div className='d-grid mt-2'>
                             <button className='btn btn-outline-secondary'>Crear</button>

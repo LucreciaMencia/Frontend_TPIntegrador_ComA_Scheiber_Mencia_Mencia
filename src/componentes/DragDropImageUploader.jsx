@@ -1,11 +1,12 @@
 import '../estilos/Estilos.css'
 import { useState, useRef } from 'react'
 
-function DragDropImageUploader() {
+function DragDropImageUploader(props) {
 
     const [image, setImage] = useState();
     const [isDragging, setIsDragging] = useState(false);
     const fileInputRef = useRef(null);
+    const onImagenSeleccionadaCallback = props.onImagenSeleccionada;
 
     function selectFiles() {
         fileInputRef.current.click();
@@ -18,20 +19,24 @@ function DragDropImageUploader() {
         const files = event.target.files;
 
         // Si hay alguno, muestra sus miniaturas
-        mostrarMiniaturas(files);
+        const imageAttributes = mostrarMiniatura(files);
+
+        onImagenSeleccionadaCallback(imageAttributes)
     }
 
-    function mostrarMiniaturas(files) {
+    function mostrarMiniatura(files) {
         if (files.length === 0) return;
 
-        for (let i = 0; i < files.length; i++) {
-            if (files[i].type.split('/')[0] !== 'image') continue;
+        const file = files[0];
 
-            setImage({
-                name: files[i].name,
-                url: URL.createObjectURL(files[i]),
-            });
-        }
+        const imageAttributes = {
+            name: file.name,
+            url: URL.createObjectURL(file),
+        };
+        
+        setImage(imageAttributes);
+
+        return imageAttributes;
     }
 
     function deleteImage(index) {
@@ -52,7 +57,8 @@ function DragDropImageUploader() {
         event.preventDefault();
         setIsDragging(false);
         const files = event.dataTransfer.files;
-        mostrarMiniaturas(files);
+        const imageAttributes = mostrarMiniatura(files);
+        onImagenSeleccionadaCallback(imageAttributes)
     }
 
 
@@ -66,9 +72,9 @@ function DragDropImageUploader() {
                     {isDragging ? (
                         <span className="select">Suelte la imagen aqui</span>
                     ) : (<>
-                        Seleccione y suelte la imagen aqui o {" "}
+                        Sueltar aqui o {" "}
                         <span className="select" role='button' onClick={selectFiles}>
-                            Browse
+                            Cargar
                         </span>
                     </>
                     )}
