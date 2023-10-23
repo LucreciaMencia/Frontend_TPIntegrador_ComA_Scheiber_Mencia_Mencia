@@ -1,3 +1,4 @@
+
 export default function crearImagen(imagen) {
     const data = new FormData();
     data.append('url-imagen', imagen.url);
