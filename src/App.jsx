@@ -13,6 +13,7 @@ import { MuroComensal, PerfilComensal, EditarComensal } from './paginas/privadas
 import { CrearComida, PerfilRestaurante, EditarRestaurante, EditarComida } from './paginas/privadas/restaurante/Index'
 
 import { perfilRestauranteLoader } from "./paginas/privadas/restaurante/loaders/perfilRestauranteLoader";
+import { perfilComensalLoader } from "./paginas/privadas/comensal/loaders/perfilComensalLoader";
 
 function App() {
 
@@ -28,7 +29,7 @@ function App() {
         <Route path='/registroRestaurante' element={<RegistroRestaurante />}></Route>
 
         <Route path='/muroComensal' element={<MuroComensal />}></Route>
-        <Route path='/perfilComensal' element={<PerfilComensal />}></Route>
+        <Route loader={perfilComensalLoader} path='/perfilComensal' element={<PerfilComensal />}></Route>
         <Route path='/editarComensal' element={<EditarComensal />}></Route>
 
         <Route path='/crearComida' element={<CrearComida />}></Route>
