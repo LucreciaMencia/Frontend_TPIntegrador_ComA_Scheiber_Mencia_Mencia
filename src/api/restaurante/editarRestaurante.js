@@ -1,10 +1,13 @@
 export default function editarRestaurante(datosUsuario, id_usuario) {
     
+    const token = sessionStorage.getItem('token') //guardamos el token de sessionStorage
+
     let parametros = {
         method: 'PUT',
         body: JSON.stringify(datosUsuario),
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
         }
     }
 

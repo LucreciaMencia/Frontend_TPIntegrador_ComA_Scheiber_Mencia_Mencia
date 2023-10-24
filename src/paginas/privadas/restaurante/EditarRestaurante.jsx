@@ -1,6 +1,10 @@
-import {BarraDeNavRestaurante} from '../../../navBar/Index'
+import { BarraDeNavRestaurante } from '../../../navBar/Index'
 import '../../../estilos/Estilos.css'
-import 'react-toastify/dist/ReactToastify.css'
+import { useCallback, useState } from 'react'
+import { toastExitoso, toastError } from '../../../utilerias/toast'
+import { editarRestaurante } from '../../../api/restaurante/index'
+import { useNavigate } from 'react-router-dom'
+
 
 
 function EditarRestaurante() {
@@ -8,69 +12,152 @@ function EditarRestaurante() {
         color: 'white'
     }
 
-  //asigno en datos el objeto que me devuelve useLoaderData()
-  const datos = useLoaderData();
+    const navigate = useNavigate(); //todos los HOOKS se llaman useTalCosa. Solo se pueden usar dentro de componentes.
 
-  const infoUsuario = datos.usuario;
+    //asigno en datos el objeto que me devuelve useLoaderData()
+    const datos = useLoaderData();
 
-  //asigno en infoRestaurante el objeto restaurante contenido en el objeto datos
-  const infoRestaurante = datos.restaurante;
+    const infoUsuario = datos.usuario;
+
+    //asigno en infoRestaurante el objeto restaurante contenido en el objeto datos
+    const infoRestaurante = datos.restaurante;
+
+    const [formulario, setFormulario] = useState({
+        nickname: '',
+        mail: '',
+        password: '',
+        nombre: '',
+        ubicacion: '',
+        contacto: '',
+        horario: '',
+        descripcion: ''
+    })
+
+
+    // lo que haces es, cada vez que formulario cambia de valor, la funcion handleSubmit se regenera
+    //para tomar el valor mas reciente de los campos del formulario
+    const handleSubmit = useCallback((event) => {
+        event.preventDefault()
+
+        let usuario = {
+            nickname: formulario.nickname,
+            mail: formulario.mail,
+            password: formulario.password,
+            nombre: formulario.nombre,
+            ubicacion: formulario.ubicacion,
+            contacto: formulario.contacto,
+            horario: formulario.horario,
+            descripcion: formulario.descripcion
+        }
+
+        const token = sessionStorage.getItem('token'); //guardamos el token de sessionStorage
+        const id_usuario = obtenerId(token);
+
+        editarRestaurante(id_usuario)
+            .then(result => { //si es request fue exitoso se ejecuta la funcion del then, por eso no es necesario revisar ahí si la respuesta fue ok o no
+                toastExitoso("Su perfil ha sido modificado")
+                navigate('/perfilRestaurante')
+            })
+            .catch((error) => {
+                toastError(error.message)
+            });
+    }, [formulario]);
+
+    function handleChange(event) {
+        setFormulario((valorActualDeFormulario) => {
+            return {
+                ...valorActualDeFormulario,
+                [event.target.name]: event.target.value
+            }
+        });
+    }
 
     return (
         <>
             <nav>
-                <BarraDeNavRestaurante 
-                   nombre_restaurante={infoRestaurante.nombre}
+                <BarraDeNavRestaurante
+                    nombre_restaurante={infoRestaurante.nombre}
                 />
             </nav>
             <br></br>
             <div className='login template d-flex justify-content-center align-items-center bg-white'>
                 <div className='form_container p-5 rounded custom-bg'>
-                    <form style={estilo}>
+                    <form onSubmit={handleSubmit} style={estilo}>
                         <h3 className='text-center'>Editar Usuario</h3>
                         <div className='mb-2'>
                             <label htmlFor='fnameresto'>{infoUsuario.nickname}</label>
-                            <input type="text" placeholder='Nuevo nickname' className='form-control'></input>
+                            <input type="text" placeholder='Nuevo nickname' className='form-control'
+                                onChange={handleChange}
+                                value={formulario.nickname}
+                                name='nickname'>
+                            </input>
                         </div>
                         <div className='mb-2'>
                             <label htmlFor='mail'>{infoUsuario.mail}</label>
-                            <input type="email" placeholder='Nuevo mail' className='form-control'></input>
+                            <input type="email" placeholder='Nuevo mail' className='form-control'
+                                onChange={handleChange}
+                                value={formulario.mail}
+                                name='mail'>
+                            </input>
                         </div>
                         <div className='mb-2'>
-                            <label htmlFor='password'>Nueva Contraseña</label>
-                            <input type="password" placeholder='**********' className='form-control'></input>
+                            <label htmlFor='password'>Contraseña</label>
+                            <input type="password" placeholder='**********' className='form-control'
+                                onChange={handleChange}
+                                value={formulario.password}
+                                name='password'>
+                            </input>
                         </div>
                         <div className='d-grid mt-2'>
                             <button className='btn btn-outline-secondary'>Guardar Cambios</button>
                         </div>
                         <br></br>
 
-                        
-                        <h4 className='text-center'>Editar Restaurante</h4>
+
+                        <h4 className='text-center'>Información del restaurante</h4>
                         <div className='mb-2'>
-                            <label htmlFor='fnameresto'>{infoRestaurante.nomre}</label>
-                            <input type="text" placeholder='Nuevo nombre de restaurante' className='form-control'></input>
+                            <label htmlFor='fnameresto'>{infoRestaurante.nombre}</label>
+                            <input type="text" placeholder='Nuevo nombre de restaurante' className='form-control'
+                                onChange={handleChange}
+                                value={formulario.nombre}
+                                name='nombre'>
+                            </input>
                         </div>
                         <div className='mb-2'>
                             <label htmlFor='lname'>{infoRestaurante.ubicacion}</label>
-                            <input type="text" placeholder='Nueva ubicación' className='form-control'></input>
+                            <input type="text" placeholder='Nueva ubicación' className='form-control'
+                                onChange={handleChange}
+                                value={formulario.ubicacion}
+                                name='ubicacion'>
+                            </input>
                         </div>
                         <div className='mb-2'>
                             <label htmlFor='lname'>{infoRestaurante.contacto}</label>
-                            <input type="text" placeholder='Nuevo contacto' className='form-control'></input>
+                            <input type="text" placeholder='Nuevo contacto' className='form-control'
+                                onChange={handleChange}
+                                value={formulario.contacto}
+                                name='contacto'>
+                            </input>
                         </div>
                         <div className='mb-2'>
                             <label htmlFor='lname'>{infoRestaurante.horario}</label>
-                            <input type="text" placeholder='Nuevo horario' className='form-control'></input>
+                            <input type="text" placeholder='Nuevo horario' className='form-control'
+                                onChange={handleChange}
+                                value={formulario.horario}
+                                name='horario'>
+                            </input>
                         </div>
                         <div className='mb-2'>
                             <label htmlFor='lname'>{infoRestaurante.descripcion}</label>
-                            <textarea type="text" placeholder='Nueva descripción' className='form-control'></textarea>
+                            <textarea type="text" placeholder='Nueva descripción' className='form-control'
+                                onChange={handleChange}
+                                value={formulario.descripcion}
+                                name='descripcion'>
+                            </textarea>
                         </div>
                         <div className='d-grid mt-2'>
                             <button className='btn btn-outline-secondary'>Guardar Cambios</button>
                         </div>
-
                     </form>
                 </div>
             </div>
@@ -83,9 +170,10 @@ export default EditarRestaurante
 
 
 
-// import {Component} from 'react'
+// import { Component, useState } from 'react'
 // import { useNavigate, useParams } from 'react-router-dom'
 // import { toast } from 'react-toastify'
+// import obtenerId from '../../../utilerias/obtenerId'
 
 // export class InternalEditarRestaurante extends Component {
 
@@ -105,9 +193,9 @@ export default EditarRestaurante
 //     }
 
 //     componentDidMount() {
-        
+
 //         if (this.props.params.id_usuario) {
-           
+
 //             let parametros = {
 //                 method: 'GET',
 //                 headers: {
@@ -116,11 +204,11 @@ export default EditarRestaurante
 //                     'authorization': sessionStorage.getItem('token')
 //                 }
 //             }
-      
+
 //             fetch(`http://localhost:8080/usuario/restaurante/${this.props.params.id_usuario}`, parametros)
 //                 .then(res => {
 //                     return res.json() //se convierte la respuesta en un json
-//                         .then(body => { 
+//                         .then(body => {
 //                             return { //se crea un objeto donde se copian algunos datos de la respuesta y el body
 //                                 status: res.status,
 //                                 ok: res.ok,
@@ -244,7 +332,7 @@ export default EditarRestaurante
 //         this.setState({ [event.target.name]: event.target.value });
 //     }
 
-//     render () {
+//     render() {
 
 //         const estilo = {
 //             color: 'white'
@@ -262,25 +350,25 @@ export default EditarRestaurante
 //                             <div className='mb-2'>
 //                                 <label htmlFor='fnameresto'>Nombre de usuario</label>
 //                                 <input type="text" placeholder='Resto10' className='form-control'
-//                                 onChange={this.handleChange}
-//                                 value={this.state.nickname}
-//                                 name='nickname'>
+//                                     onChange={this.handleChange}
+//                                     value={this.state.nickname}
+//                                     name='nickname'>
 //                                 </input>
 //                             </div>
 //                             <div className='mb-2'>
 //                                 <label htmlFor='mail'>Email</label>
 //                                 <input type="email" placeholder='restaurante@mail.com' className='form-control'
-//                                 onChange={this.handleChange}
-//                                 value={this.state.mail}
-//                                 name='mail'>
+//                                     onChange={this.handleChange}
+//                                     value={this.state.mail}
+//                                     name='mail'>
 //                                 </input>
 //                             </div>
 //                             <div className='mb-2'>
 //                                 <label htmlFor='password'>Contraseña</label>
 //                                 <input type="password" placeholder='**********' className='form-control'
-//                                 onChange={this.handleChange}
-//                                 value={this.state.password}
-//                                 name='password'>
+//                                     onChange={this.handleChange}
+//                                     value={this.state.password}
+//                                     name='password'>
 //                                 </input>
 //                             </div>
 //                             <br></br>
@@ -288,47 +376,47 @@ export default EditarRestaurante
 //                             <div className='mb-2'>
 //                                 <label htmlFor='fnameresto'>Nombre del restaurante</label>
 //                                 <input type="text" placeholder='Mi restaurante' className='form-control'
-//                                 onChange={this.handleChange}
-//                                 value={this.state.nombre}
-//                                 name='nombre'>
+//                                     onChange={this.handleChange}
+//                                     value={this.state.nombre}
+//                                     name='nombre'>
 //                                 </input>
 //                             </div>
 //                             <div className='mb-2'>
 //                                 <label htmlFor='lname'>Ubicación</label>
 //                                 <input type="text" placeholder='Calle 53 N 1234' className='form-control'
-//                                 onChange={this.handleChange}
-//                                 value={this.state.ubicacion}
-//                                 name='ubicacion'>
+//                                     onChange={this.handleChange}
+//                                     value={this.state.ubicacion}
+//                                     name='ubicacion'>
 //                                 </input>
 //                             </div>
 //                             <div className='mb-2'>
 //                                 <label htmlFor='lname'>Contacto</label>
 //                                 <input type="text" placeholder='3765829882' className='form-control'
-//                                 onChange={this.handleChange}
-//                                 value={this.state.contacto}
-//                                 name='contacto'>
+//                                     onChange={this.handleChange}
+//                                     value={this.state.contacto}
+//                                     name='contacto'>
 //                                 </input>
 //                             </div>
 //                             <div className='mb-2'>
 //                                 <label htmlFor='lname'>Horario</label>
 //                                 <input type="text" placeholder='Todos los días de 16hs a 00hs' className='form-control'
-//                                 onChange={this.handleChange}
-//                                 value={this.state.horario}
-//                                 name='horario'>
+//                                     onChange={this.handleChange}
+//                                     value={this.state.horario}
+//                                     name='horario'>
 //                                 </input>
 //                             </div>
 //                             <div className='mb-2'>
 //                                 <label htmlFor='lname'>Descripción</label>
 //                                 <textarea type="text" placeholder='Tenemos lo que estás buscando.' className='form-control'
-//                                 onChange={this.handleChange}
-//                                 value={this.state.descripcion}
-//                                 name='descripcion'>
+//                                     onChange={this.handleChange}
+//                                     value={this.state.descripcion}
+//                                     name='descripcion'>
 //                                 </textarea>
 //                             </div>
 //                             <div className='d-grid mt-2'>
 //                                 <button className='btn btn-outline-secondary'>Guardar Cambios</button>
 //                             </div>
-    
+
 //                         </form>
 //                     </div>
 //                 </div>
@@ -344,3 +432,53 @@ export default EditarRestaurante
 
 //     return <InternalEditarRestaurante navigate={navigate} params={p} />
 // }
+
+
+/* FORM de antes
+                    <form style={estilo}>
+                        <h3 className='text-center'>Editar Usuario</h3>
+                        <div className='mb-2'>
+                            <label htmlFor='fnameresto'>{infoUsuario.nickname}</label>
+                            <input type="text" placeholder='Nuevo nickname' className='form-control'></input>
+                        </div>
+                        <div className='mb-2'>
+                            <label htmlFor='mail'>{infoUsuario.mail}</label>
+                            <input type="email" placeholder='Nuevo mail' className='form-control'></input>
+                        </div>
+                        <div className='mb-2'>
+                            <label htmlFor='password'>Nueva Contraseña</label>
+                            <input type="password" placeholder='**********' className='form-control'></input>
+                        </div>
+                        <div className='d-grid mt-2'>
+                            <button className='btn btn-outline-secondary'>Guardar Cambios</button>
+                        </div>
+                        <br></br>
+
+
+                        <h4 className='text-center'>Editar Restaurante</h4>
+                        <div className='mb-2'>
+                            <label htmlFor='fnameresto'>{infoRestaurante.nomre}</label>
+                            <input type="text" placeholder='Nuevo nombre de restaurante' className='form-control'></input>
+                        </div>
+                        <div className='mb-2'>
+                            <label htmlFor='lname'>{infoRestaurante.ubicacion}</label>
+                            <input type="text" placeholder='Nueva ubicación' className='form-control'></input>
+                        </div>
+                        <div className='mb-2'>
+                            <label htmlFor='lname'>{infoRestaurante.contacto}</label>
+                            <input type="text" placeholder='Nuevo contacto' className='form-control'></input>
+                        </div>
+                        <div className='mb-2'>
+                            <label htmlFor='lname'>{infoRestaurante.horario}</label>
+                            <input type="text" placeholder='Nuevo horario' className='form-control'></input>
+                        </div>
+                        <div className='mb-2'>
+                            <label htmlFor='lname'>{infoRestaurante.descripcion}</label>
+                            <textarea type="text" placeholder='Nueva descripción' className='form-control'></textarea>
+                        </div>
+                        <div className='d-grid mt-2'>
+                            <button className='btn btn-outline-secondary'>Guardar Cambios</button>
+                        </div>
+
+                    </form>
+*/
