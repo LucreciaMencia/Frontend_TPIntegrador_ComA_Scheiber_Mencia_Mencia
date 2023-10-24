@@ -12,8 +12,11 @@ import { IniciarSesion, Inicio, InfoDeLaPagina, RecuperarPassword, RegistroComen
 import { MuroComensal, PerfilComensal, EditarComensal } from './paginas/privadas/comensal/Index'
 import { CrearComida, PerfilRestaurante, EditarRestaurante, EditarComida } from './paginas/privadas/restaurante/Index'
 
-import { perfilRestauranteLoader, editarComidaLoader } from "./paginas/privadas/restaurante/loaders/index";
+//Se agrega loader={} a los componentes que precisan mostrar datos de la BD.
+//se precargan en el loader y luego se pasa a las respectivas rutas
+import { perfilRestauranteLoader, editarRestauranteLoader, editarComidaLoader } from "./paginas/privadas/restaurante/loaders/index";
 import { perfilComensalLoader, muroComensalLoader, editarComensalLoader } from "./paginas/privadas/comensal/loaders/index";
+
 
 function App() {
 
@@ -34,7 +37,7 @@ function App() {
 
         <Route path='/crearComida' element={<CrearComida />}></Route>
         <Route loader={perfilRestauranteLoader} path='/perfilRestaurante' element={<PerfilRestaurante />}></Route>
-        <Route path='/editarRestaurante' element={<EditarRestaurante />}></Route>
+        <Route loader={editarRestauranteLoader} path='/editarRestaurante' element={<EditarRestaurante />}></Route>
         <Route loader={editarComidaLoader} path='/editarComida' element={<EditarComida />}></Route>
       </>
     )
