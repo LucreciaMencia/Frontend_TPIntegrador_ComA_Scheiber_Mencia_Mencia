@@ -12,7 +12,7 @@ import { IniciarSesion, Inicio, InfoDeLaPagina, RecuperarPassword, RegistroComen
 import { MuroComensal, PerfilComensal, EditarComensal } from './paginas/privadas/comensal/Index'
 import { CrearComida, PerfilRestaurante, EditarRestaurante, EditarComida } from './paginas/privadas/restaurante/Index'
 
-import { perfilRestauranteLoader } from "./paginas/privadas/restaurante/loaders/perfilRestauranteLoader";
+import { perfilRestauranteLoader, editarComidaLoader } from "./paginas/privadas/restaurante/loaders/index";
 import { perfilComensalLoader } from "./paginas/privadas/comensal/loaders/perfilComensalLoader";
 
 function App() {
@@ -35,7 +35,7 @@ function App() {
         <Route path='/crearComida' element={<CrearComida />}></Route>
         <Route loader={perfilRestauranteLoader} path='/perfilRestaurante' element={<PerfilRestaurante />}></Route>
         <Route path='/editarRestaurante' element={<EditarRestaurante />}></Route>
-        <Route path='/editarComida' element={<EditarComida />}></Route>
+        <Route loader={editarComidaLoader} path='/editarComida' element={<EditarComida />}></Route>
       </>
     )
   );
