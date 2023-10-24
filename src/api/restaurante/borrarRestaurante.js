@@ -1,6 +1,6 @@
 export default function borrarRestaurante(id_usuario) {
     
-    let parametros = {
+    const parametros = {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',

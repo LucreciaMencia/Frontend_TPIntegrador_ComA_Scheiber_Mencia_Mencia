@@ -1,7 +1,7 @@
 import { obtenerUsuario } from '../../../../api/usuario/index'
 import { obtenerRestaurante } from '../../../../api/restaurante/index'
 
-import { obtenerId } from '../../../../utilerias/obtenerId'
+import { obtenerId } from '../../../../utilerias/index';
 
 
 export default async function editarRestauranteLoader() {

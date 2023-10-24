@@ -1,6 +1,6 @@
 export default function crearUsuario(datosUsuario) {
     
-    let parametros = {
+    const parametros = {
         method: 'POST',
         body: JSON.stringify(datosUsuario),
         headers: {

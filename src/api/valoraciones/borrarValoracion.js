@@ -1,5 +1,5 @@
 export default function borrarValoracin(id_valoracion) {
-    let parametros = {
+    const parametros = {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',

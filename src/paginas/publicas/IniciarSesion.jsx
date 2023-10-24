@@ -4,7 +4,6 @@ import { BarraDeNavInicio } from '../../navBar/Index'
 import { useNavigate, useParams, Link, useLoaderData } from 'react-router-dom'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import jwt_decode from 'jwt-decode';
 
 export class InternalLogin extends Component {
 
@@ -20,12 +19,12 @@ export class InternalLogin extends Component {
     handleSubmit = (event) => {
         event.preventDefault()
 
-        let usuario = {
+        const usuario = {
             nickname: this.state.nickname,
             password: this.state.password
         }
 
-        let parametros = {
+        const parametros = {
             method: 'POST',
             body: JSON.stringify(usuario),
             headers: {

@@ -1,5 +1,5 @@
 export default function borrarComensal(id_usuario) {
-    let parametros = {
+    const parametros = {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',

@@ -1,5 +1,5 @@
 export default function obtenerUsuario(id_usuario, token) {
-    let parametros = {
+    const parametros = {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`

@@ -2,7 +2,7 @@
 import { obtenerUnaComida } from "../../../../api/comida";
 import { obtenerRestaurante } from "../../../../api/restaurante";
 
-import { obtenerId } from '../../../../utilerias/obtenerId'
+import { obtenerId } from '../../../../utilerias/index';
 
 export default async function editarComidaLoader() {
 

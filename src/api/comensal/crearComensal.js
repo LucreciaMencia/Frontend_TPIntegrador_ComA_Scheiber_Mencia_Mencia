@@ -1,5 +1,5 @@
 export default function crearComensal(datosUsuario) {
-    let parametros = {
+    const parametros = {
         method: 'POST',
         body: JSON.stringify(datosUsuario),
         headers: {

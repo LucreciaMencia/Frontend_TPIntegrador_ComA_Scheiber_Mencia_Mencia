@@ -1,5 +1,5 @@
 export default function obtenerImagen(id_comida) {
-    let parametros = {
+    const parametros = {
         method: 'GET'
     }
 

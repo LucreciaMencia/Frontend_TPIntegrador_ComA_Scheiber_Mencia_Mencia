@@ -2,7 +2,7 @@
 import { obtenerComensal } from "../../../../api/comensal";
 import { obtenerComidasValoradasPorComensal } from "../../../../api/comida";
 
-import { obtenerId } from '../../../../utilerias/obtenerId'
+import { obtenerId } from '../../../../utilerias/index';
 
 
 export default async function perfilComensalLoader() {

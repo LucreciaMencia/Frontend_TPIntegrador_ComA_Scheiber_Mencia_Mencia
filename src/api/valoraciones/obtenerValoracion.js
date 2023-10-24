@@ -1,5 +1,5 @@
 export default function obtenerValoracion(id_usuario) {
-    let parametros = {
+    const parametros = {
         method: 'GET',
     }
 

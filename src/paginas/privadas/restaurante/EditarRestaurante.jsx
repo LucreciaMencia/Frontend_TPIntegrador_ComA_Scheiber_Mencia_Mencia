@@ -4,8 +4,8 @@ import { useCallback, useState } from 'react'
 import { toastExitoso, toastError } from '../../../utilerias/toast'
 import { editarRestaurante } from '../../../api/restaurante/index'
 import { useNavigate } from 'react-router-dom'
-
-
+import { obtenerId } from '../../../utilerias';
+import { useLoaderData } from 'react-router-dom';
 
 function EditarRestaurante() {
     const estilo = {
@@ -39,7 +39,7 @@ function EditarRestaurante() {
     const handleSubmit = useCallback((event) => {
         event.preventDefault()
 
-        let usuario = {
+        const usuario = {
             nickname: formulario.nickname,
             mail: formulario.mail,
             password: formulario.password,
@@ -53,7 +53,7 @@ function EditarRestaurante() {
         const token = sessionStorage.getItem('token'); //guardamos el token de sessionStorage
         const id_usuario = obtenerId(token);
 
-        editarRestaurante(id_usuario)
+        editarRestaurante(usuario, id_usuario)
             .then(result => { //si es request fue exitoso se ejecuta la funcion del then, por eso no es necesario revisar ahí si la respuesta fue ok o no
                 toastExitoso("Su perfil ha sido modificado")
                 navigate('/perfilRestaurante')
@@ -61,7 +61,7 @@ function EditarRestaurante() {
             .catch((error) => {
                 toastError(error.message)
             });
-    }, [formulario]);
+    }, [formulario, navigate]);
 
     function handleChange(event) {
         setFormulario((valorActualDeFormulario) => {
@@ -173,7 +173,6 @@ export default EditarRestaurante
 // import { Component, useState } from 'react'
 // import { useNavigate, useParams } from 'react-router-dom'
 // import { toast } from 'react-toastify'
-// import obtenerId from '../../../utilerias/obtenerId'
 
 // export class InternalEditarRestaurante extends Component {
 
@@ -196,7 +195,7 @@ export default EditarRestaurante
 
 //         if (this.props.params.id_usuario) {
 
-//             let parametros = {
+//             const parametros = {
 //                 method: 'GET',
 //                 headers: {
 //                     'Content-Type': 'application/json',
@@ -251,7 +250,7 @@ export default EditarRestaurante
 
 //     handleSubmit = (event) => {
 //         event.preventDefault()
-//         let usuario = {
+//         const usuario = {
 //             nickname: this.state.nickname,
 //             mail: this.state.mail,
 //             password: this.state.password,
@@ -262,7 +261,7 @@ export default EditarRestaurante
 //             descripcion: this.state.descripcion
 //         }
 
-//         let parametros = {
+//         const parametros = {
 //             method: this.props.params.id_usuario ? 'PUT' : 'POST',
 //             body: JSON.stringify(usuario),
 //             headers: {

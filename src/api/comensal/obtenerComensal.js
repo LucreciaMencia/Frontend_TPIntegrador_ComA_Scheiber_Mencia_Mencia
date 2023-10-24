@@ -1,6 +1,6 @@
 
 export default function obtenerComensal(id_usuario, token) {
-    let parametros = {
+    const parametros = {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`

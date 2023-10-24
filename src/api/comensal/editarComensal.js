@@ -1,5 +1,5 @@
 export default function editarComensal(datosUsuario, id_usuario) {
-    let parametros = {
+    const parametros = {
         method: 'PUT',
         body: JSON.stringify(datosUsuario),
         headers: {

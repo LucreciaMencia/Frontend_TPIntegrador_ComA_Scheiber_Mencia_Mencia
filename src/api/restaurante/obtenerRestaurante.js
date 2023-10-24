@@ -4,7 +4,7 @@ export default function obtenerRestaurante(id_usuario, token) {
         'Authorization': `Bearer ${token}`
     }
 
-    let parametros = {
+    const parametros = {
         method: 'GET',
         headers: headers
     }

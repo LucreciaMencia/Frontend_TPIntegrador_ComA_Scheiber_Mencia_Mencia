@@ -1,5 +1,5 @@
 export default function crearComida(datosComida) {
-    let parametros = {
+    const parametros = {
         method: 'POST',
         body: JSON.stringify(datosComida),
         headers: {

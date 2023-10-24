@@ -1,7 +1,7 @@
 import { obtenerComensal } from "../../../../api/comensal";
 import { obtenerUsuario } from '../../../../api/usuario';
 
-import { obtenerId } from '../../../../utilerias/obtenerId'
+import { obtenerId } from '../../../../utilerias/index';
 
 export default async function editarComensalLoader() {
 

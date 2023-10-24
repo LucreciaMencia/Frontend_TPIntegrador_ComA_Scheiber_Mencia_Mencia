@@ -29,7 +29,7 @@ export class InternalRegistroRestaurante extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        let usuario = {
+        const usuario = {
             nickname: this.state.nickname,
             mail: this.state.mail,
             password: this.state.password,

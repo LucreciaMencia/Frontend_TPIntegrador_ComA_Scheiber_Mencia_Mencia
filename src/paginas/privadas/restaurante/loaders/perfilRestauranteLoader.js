@@ -1,8 +1,8 @@
 //importo funciones
 import { obtenerRestaurante } from '../../../../api/restaurante';
-import { obtenerComidas } from '../../../../api/comida';
+import { obtenerComidasRestaurante } from '../../../../api/comida';
 
-import { obtenerId } from '../../../../utilerias/obtenerId'
+import { obtenerId } from '../../../../utilerias/index';
 
 
 export default async function perfilRestauranteLoader() {
@@ -14,7 +14,7 @@ export default async function perfilRestauranteLoader() {
     const id_usuario = datosToken.id_usuario;
     
     //declaro la variable comida y guardo los datos obtenidos
-    const comidas = await obtenerComidas(id_usuario) //hace el fetch
+    const comidas = await obtenerComidasRestaurante(id_usuario) //hace el fetch
         .then((res) => res.json()) //se convierte en un objeto json
 
     //declaro la variable restaurante y guardo los datos obtenidos

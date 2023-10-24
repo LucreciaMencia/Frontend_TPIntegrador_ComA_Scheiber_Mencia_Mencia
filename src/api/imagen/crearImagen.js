@@ -4,7 +4,7 @@ export default function crearImagen(imagen) {
     data.append('url-imagen', imagen.url);
     data.append('nombre', imagen.name);
 
-    let parametros = {
+    const parametros = {
         method: 'POST',
         body: data
     }

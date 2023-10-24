@@ -24,7 +24,7 @@ export class InternalRegistroComensal extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        let usuario = {
+        const usuario = {
             nickname: this.state.nickname,
             mail: this.state.mail,
             password: this.state.password,
@@ -32,7 +32,7 @@ export class InternalRegistroComensal extends Component {
             apellido: this.state.apellido
         }
 
-        let parametros = {
+        const parametros = {
             method: 'POST',
             body: JSON.stringify(usuario),
             headers: {

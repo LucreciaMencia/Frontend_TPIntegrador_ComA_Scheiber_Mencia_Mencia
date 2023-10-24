@@ -1,5 +1,5 @@
 export default function crearValoracion(datosValoracion) {
-    let parametros = {
+    const parametros = {
         method: 'POST',
         body: JSON.stringify(datosValoracion),
         headers: {
