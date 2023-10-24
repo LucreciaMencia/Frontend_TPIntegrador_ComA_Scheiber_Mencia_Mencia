@@ -1,5 +1,7 @@
 import { BarraDeNavComensal } from '../../../navBar/Index'
 import { useLoaderData } from 'react-router-dom';
+import { FoodCard } from '../../../componentes/Index';
+
 
 
 function PerfilComensal() {
