@@ -2,12 +2,17 @@
 import { obtenerRestaurante } from '../../../../api/restaurante';
 import { obtenerComidas } from '../../../../api/comida';
 
+import { obtenerId } from '../../../../utilerias/obtenerId'
+
 
 export default async function perfilRestauranteLoader() {
 
     const token = sessionStorage.getItem('token') //guardamos el token de sessionStorage
-    const id_usuario = 4; //Crear funcion en utilerias para extraer el id_usuario del token y llamarlo aqui
 
+    //obtenemos los datos del token y guardamos el id_usuario
+    const datosToken = obtenerId(token);
+    const id_usuario = datosToken.id_usuario;
+    
     //declaro la variable comida y guardo los datos obtenidos
     const comidas = await obtenerComidas(id_usuario) //hace el fetch
         .then((res) => res.json()) //se convierte en un objeto json

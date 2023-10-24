@@ -2,11 +2,17 @@
 import { obtenerUnaComida } from "../../../../api/comida";
 import { obtenerRestaurante } from "../../../../api/restaurante";
 
+import { obtenerId } from '../../../../utilerias/obtenerId'
+
 export default async function editarComidaLoader() {
 
     const token = sessionStorage.getItem('token') //guardamos el token de sessionStorage
-    const id_usuario = 4; //Crear funcion en utilerias para extraer el id_usuario del token y llamarlo aqui
 
+    //obtenemos los datos del token y guardamos el id_usuario
+    const datosToken = obtenerId(token);
+    const id_usuario = datosToken.id_usuario;
+
+    
     const comida = await obtenerUnaComida(id_usuario)
         .then((res) => res.json())
 
