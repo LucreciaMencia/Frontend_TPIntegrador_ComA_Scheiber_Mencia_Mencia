@@ -11,7 +11,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { IniciarSesion, Inicio, InfoDeLaPagina, RecuperarPassword, RegistroComensal, RegistroRestaurante } from './paginas/publicas/Index'
 import { MuroComensal, PerfilComensal, EditarComensal } from './paginas/privadas/comensal/Index'
 import { CrearComida, PerfilRestaurante, EditarRestaurante, EditarComida } from './paginas/privadas/restaurante/Index'
-import perfilRestauranteLoader from "./paginas/privadas/restaurante/loaders/perfilRestauranteLoader";
+
+import { perfilRestauranteLoader } from "./paginas/privadas/restaurante/loaders/perfilRestauranteLoader";
 
 function App() {
 

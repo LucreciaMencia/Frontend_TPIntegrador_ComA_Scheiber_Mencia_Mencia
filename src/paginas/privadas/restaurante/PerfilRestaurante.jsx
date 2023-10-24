@@ -3,19 +3,19 @@ import { BarraDeNavRestaurante } from '../../../navBar/Index';
 import { useLoaderData } from 'react-router-dom';
 
 
-
-
 function PerfilRestaurante() {
-
+  //asigno en datos el objeto que me devuelve useLoaderData()
   const datos = useLoaderData();
 
-  const comidas = datos.comidas;
+  //asigno en infoComidas el objeto comidas contenido en el objeto datos
+  const infoComidas = datos.comidas;
+  //asigno en infoRestaurante el objeto restaurante contenido en el objeto datos
   const infoRestaurante = datos.restaurante;
 
   return (
     <>
       <nav>
-        <BarraDeNavRestaurante
+        <BarraDeNavRestaurante //le paso al NavBar el dato nombre contenido en el objeto infoRestaurante
           nombre_restaurante={infoRestaurante.nombre}
         />
       </nav>
@@ -31,7 +31,7 @@ function PerfilRestaurante() {
       />
         <div className='row'>
           {
-            comidas.map(unaComida =>
+            infoComidas.map(unaComida =>
               <FoodCard
                 nombre={unaComida.nombre}
                 descripcion={unaComida.descripcion}

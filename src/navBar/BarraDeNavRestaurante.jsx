@@ -5,13 +5,15 @@ import { Outlet, Link } from 'react-router-dom';
 import '../estilos/Estilos.css'
 
 
-function BarraDeNavRestaurantes(props) {
+function BarraDeNavRestaurantes(props) { //coloco props en los argumentos para recibir las props de perfilRestaurante
     return (
         <>
             <Navbar expand="lg" className="navBg2" variant='dark'>
 
                 <Container>
-                    
+
+                    {/* en el Navbar.Brand coloco el nombre del restaurante que se mostrara en la pagina, 
+                    con el dato del nombre que pase desde perfilRestaurante*/}
                     <Navbar.Brand as={Link} to="/perfilRestaurante">{props.nombre_restaurante}</Navbar.Brand>
                     
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
