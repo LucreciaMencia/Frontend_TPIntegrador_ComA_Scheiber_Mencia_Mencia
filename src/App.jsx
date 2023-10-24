@@ -1,7 +1,7 @@
 import {
   createBrowserRouter,
   createRoutesFromElements,
-  Route, Routes,
+  Route,
   RouterProvider,
 } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
@@ -13,7 +13,7 @@ import { MuroComensal, PerfilComensal, EditarComensal } from './paginas/privadas
 import { CrearComida, PerfilRestaurante, EditarRestaurante, EditarComida } from './paginas/privadas/restaurante/Index'
 
 import { perfilRestauranteLoader, editarComidaLoader } from "./paginas/privadas/restaurante/loaders/index";
-import { perfilComensalLoader, editarComensalLoader } from "./paginas/privadas/comensal/loaders/index";
+import { perfilComensalLoader, muroComensalLoader, editarComensalLoader } from "./paginas/privadas/comensal/loaders/index";
 
 function App() {
 
@@ -28,7 +28,7 @@ function App() {
         <Route path='/registroComensal' element={<RegistroComensal />}></Route>
         <Route path='/registroRestaurante' element={<RegistroRestaurante />}></Route>
 
-        <Route path='/muroComensal' element={<MuroComensal />}></Route>
+        <Route loader={muroComensalLoader} path='/muroComensal' element={<MuroComensal />}></Route>
         <Route loader={perfilComensalLoader} path='/perfilComensal' element={<PerfilComensal />}></Route>
         <Route loader={editarComensalLoader} path='/editarComensal' element={<EditarComensal />}></Route>
 

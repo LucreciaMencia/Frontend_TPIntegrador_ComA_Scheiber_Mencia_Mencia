@@ -1,31 +1,27 @@
-import {BarraDeNavComensal} from '../../../navBar/Index'
-import { useEffect, useState } from 'react';
+import { BarraDeNavComensal } from '../../../navBar/Index'
 import { FoodCard } from '../../../componentes/Index';
-
-
-
+import { useLoaderData } from 'react-router-dom';
 
 function MuroComensal() {
-  const [comidas, setComidas] = useState([])
+  //asigno en datos el objeto que me devuelve useLoaderData()
+  const datos = useLoaderData();
 
-  const id_restaurante = 1;
-
-  useEffect(() => {
-    // Ni bien se renderiza este componente, se hace el siguiente request
-    ObtenerComidas(id_restaurante)
-      .then((res) => res.json())
-      .then(setComidas);
-  }, [])
+  //asigno en infoComidas el objeto comidas contenido en el objeto datos
+  const infoComidas = datos.comidas;
+  //asigno en infoComensal el objeto comensal contenido en el objeto datos
+  const infoComensal = datos.comensal;
 
   return (
     <>
       <nav>
-        <BarraDeNavComensal />
+        <BarraDeNavComensal
+          nombre_comensal={infoComensal.nombre}
+        />
       </nav>
       <br></br>
       <div className='container justify-content-center align-items-center vh-100 bg-white'>
         <div className='row'>
-          {comidas.map
+          {infoComidas.map
             (unaComida =>
               <FoodCard
                 nombre={unaComida.nombre}
@@ -41,13 +37,6 @@ function MuroComensal() {
       </div>
     </>
   )
-}
-
-function ObtenerComidas(id_restaurante) {
-  let parametros = {
-    method: 'GET'
-  }
-  return fetch(`http://localhost:8080/comida?restaurante=${id_restaurante}`, parametros)
 }
 
 export default MuroComensal
