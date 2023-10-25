@@ -1,9 +1,12 @@
 export default function borrarRestaurante(id_usuario) {
+
+    const token = sessionStorage.getItem('token')
     
     const parametros = {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
         }
     }
 

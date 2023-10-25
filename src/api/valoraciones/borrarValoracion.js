@@ -1,8 +1,12 @@
 export default function borrarValoracin(id_valoracion) {
+
+    const token = sessionStorage.getItem('token')
+
     const parametros = {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
         }
     }
 
