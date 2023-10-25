@@ -1,9 +1,9 @@
 import { BarraDeNavInicio } from '../../navBar/Index'
 import '../../estilos/Estilos.css'
-import { obtenerUsuario } from '../../api/usuario/index'
+import { editarUsuario } from '../../api/usuario/index'
 import { useNavigate } from 'react-router-dom'
 import { useCallback, useState } from 'react'
-import { toastExitoso, toastError } from '../../../utilerias/toast'
+import { toastExitoso, toastError } from '../../utilerias/toast'
 
 export default function RecuperarPassword() {
     const estilo = {
@@ -22,17 +22,10 @@ export default function RecuperarPassword() {
 
         let usuario = {
             mail: formulario.mail,
-        }
-
-        let newPassword = {
             password: formulario.password
         }
 
-        const token = sessionStorage.getItem('token');
-        const id_usuario = obtenerId(token);
-
-        obtenerUsuario(usuario, id_usuario)
-        editarUsuario(newPassword, id_usuario)
+        editarUsuario(usuario)
             .then(result => {
                 toastExitoso("Su contraseña ha sido modificada")
                 navigate('/iniciarSesion')
@@ -43,12 +36,7 @@ export default function RecuperarPassword() {
     }, [formulario]);
 
     function handleChange(event) {
-        setFormulario((valorActualDeFormulario) => {
-            return {
-                ...valorActualDeFormulario,
-                [event.target.name]: event.target.value
-            }
-        });
+        setFormulario({[event.target.name]: event.target.value});
     }
 
     return (
