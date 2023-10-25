@@ -33,6 +33,7 @@ function PerfilRestaurante() {
           {
             infoComidas.map(unaComida =>
               <FoodCard
+                id={unaComida.id_comida}
                 nombre={unaComida.nombre}
                 descripcion={unaComida.descripcion}
                 restaurante={unaComida.nombre_restaurante}

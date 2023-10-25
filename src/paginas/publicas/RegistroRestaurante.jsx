@@ -59,7 +59,7 @@ export class InternalRegistroRestaurante extends Component {
 
                         toastExitoso("El usuario se ha registrado correctamente")
 
-                        this.props.navigate("/perfilRestaurante")
+                        this.props.navigate("/crearComida")
 
                     } else {
                         toastError(result.body.message)
