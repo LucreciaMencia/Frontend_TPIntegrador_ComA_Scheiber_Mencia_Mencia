@@ -3,6 +3,9 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import { Outlet, Link } from 'react-router-dom';
+import { LuLogIn } from 'react-icons/lu'
+
+
 
 
 function BarraDeNavInicio() {
@@ -17,7 +20,9 @@ function BarraDeNavInicio() {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link as={Link} to="/infoDeLaPagina">¿Qué comemos hoy?</Nav.Link>
-              <Nav.Link as={Link} to="/iniciarSesion">Iniciar Sesión</Nav.Link>
+              <Nav.Link as={Link} to="/iniciarSesion">Iniciar Sesión
+              <LuLogIn/>
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
 

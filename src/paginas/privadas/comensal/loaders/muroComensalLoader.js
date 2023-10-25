@@ -14,7 +14,7 @@ export default async function muroComensalLoader() {
 
     //declaro la variable comida y guardo los datos obtenidos
     //debe traer tooodas las comidas de la base de datos
-    const comidas = await obtenerTodasLasComidas() //hace el fetch
+    const comidas = await obtenerTodasLasComidas(token) //hace el fetch
         .then((res) => res.json()) //se convierte en un objeto json
 
     //declaro la variable comensal y guardo los datos obtenidos

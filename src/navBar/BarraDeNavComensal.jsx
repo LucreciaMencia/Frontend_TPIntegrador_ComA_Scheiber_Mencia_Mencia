@@ -3,9 +3,16 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Outlet, Link } from 'react-router-dom';
 import '../estilos/Estilos.css'
+import { LuLogOut } from 'react-icons/lu'
 
 
 function BarraDeNavComensal(props) { //coloco props en los argumentos para recibir las props de perfilComensal
+
+  const cerrarSesion = () => {
+    sessionStorage.removeItem('token');
+
+  };
+
   return (
     <>
       <Navbar expand="lg" className="navBg" variant='dark'>
@@ -20,7 +27,9 @@ function BarraDeNavComensal(props) { //coloco props en los argumentos para recib
             <Nav className="me-auto">
               <Nav.Link as={Link} to="/muroComensal">Ver comidas</Nav.Link>
               <Nav.Link as={Link} to="/editarComensal">Editar Perfil</Nav.Link>
-              <Nav.Link as={Link} to="/">Cerrar Sesion</Nav.Link>
+              <Nav.Link onClick={cerrarSesion} as={Link} to="/">Cerrar Sesión
+              <LuLogOut/>
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
