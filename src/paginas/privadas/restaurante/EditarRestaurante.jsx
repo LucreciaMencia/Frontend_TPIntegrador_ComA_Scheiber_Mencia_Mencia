@@ -4,7 +4,7 @@ import { useCallback, useState } from 'react'
 import { toastExitoso, toastError } from '../../../utilerias/toast'
 import { editarRestaurante } from '../../../api/restaurante/index'
 import { useNavigate } from 'react-router-dom'
-import { obtenerId } from '../../../utilerias';
+import { obtenerId } from '../../../utilerias/index';
 import { useLoaderData } from 'react-router-dom';
 
 function EditarRestaurante() {

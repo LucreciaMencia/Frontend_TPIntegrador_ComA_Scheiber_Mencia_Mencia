@@ -1,10 +1,131 @@
-import { Component } from 'react'
 import '../../estilos/Estilos.css'
 import { BarraDeNavInicio } from '../../navBar/Index'
-import { useNavigate, useParams, Link, useLoaderData } from 'react-router-dom'
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toastExitoso, toastError } from '../../utilerias/toast'
+import { useCallback, useState } from 'react'
+import { useNavigate, Link } from 'react-router-dom'
+import { obtenerId } from '../../utilerias/index'
+import { obtenerUsuario } from '../../api/usuario/index';
 
+function IniciarSesion() {
+
+    const estilo = {
+        color: 'white'
+    }
+
+    const navigate = useNavigate();
+
+    const [formulario, setFormulario] = useState({
+        nickname: '',
+        password: '',
+    })
+
+    const handleSubmit = useCallback((event) => {
+        event.preventDefault()
+
+        const usuario = {
+            nickname: formulario.nickname,
+            password: formulario.password
+        }
+        const token = sessionStorage.getItem('token');
+        const id_usuario = obtenerId(token);
+
+        obtenerUsuario(usuario, id_usuario)
+            .then(result => {
+                toastExitoso("Bienvenido")
+                if (result.body.rol === "restaurante") {
+                    navigate("/perfilRestaurante")
+                } else {
+                    navigate("/muroComensal")
+                }
+            })
+            .catch((error) => {
+                toastError(error.message)
+            });
+    }, [formulario, navigate]);
+
+    const handleChange = (event) => {
+        setFormulario({ [event.target.name]: event.target.value });
+    };
+
+    return (
+        <>
+            <nav>
+                <BarraDeNavInicio />
+            </nav>
+            <br></br>
+            <div className='login template d-flex justify-content-center align-items-center bg-white'>
+                <div className='form_container p-5 rounded custom-bg'>
+                    <form onSubmit={handleSubmit} style={estilo}>
+                        <h3 className='text-center'>Iniciar Sesión</h3>
+                        <div className='mb-2'>
+                            <label htmlFor='nickname'>Nickname</label>
+                            <input
+                                type="text"
+                                placeholder='Ingrese su nickname'
+                                className='form-control'
+                                onChange={handleChange}
+                                value={formulario.nickname}
+                                name='nickname'>
+                            </input>
+                        </div>
+                        <div className='mb-2'>
+                            <label htmlFor='password'>Contraseña</label>
+                            <input
+                                type="password"
+                                placeholder='Ingrese su contraseña'
+                                className='form-control'
+                                onChange={handleChange}
+                                value={formulario.password}
+                                name='password'>
+                            </input>
+                        </div>
+
+                        {/* <div className='mb-2'>
+                            <input type="checkbox" className='custom-control custom-checkbox' id="check" />
+                            <label htmlFor='check' className='custom-input-label ms-2'>
+                                Recuérdame
+                            </label>
+                         </div> */}
+
+                        <div className='d-grid'>
+                            <button className='btn btn-outline-secondary'>Iniciar Sesión</button>
+                        </div>
+                        <div className='d-grid'>
+                            <Link to="/recuperarPassword">
+                                <button
+                                    className='btn btn-outline-secondary'>
+                                    Recuperar contraseña
+                                </button>
+                            </Link>
+                        </div>
+                        <br></br>
+
+
+                        <Link to="/registroRestaurante" className='me-2'>
+                            <button
+                                className='btn btn-outline-secondary'>
+                                Registrarme como restaurante
+                            </button>
+                        </Link>
+                        <Link to="/registroComensal">
+                            <button
+                                className='btn btn-outline-secondary'>
+                                Registrarme como comensal
+                            </button>
+                        </Link>
+                        <br></br>
+                    </form>
+                </div>
+            </div>
+        </>
+    )
+
+}
+
+export default IniciarSesion
+
+
+/*
 export class InternalLogin extends Component {
 
     constructor(props) {
@@ -15,7 +136,7 @@ export class InternalLogin extends Component {
             password: ''
         }
     }
-    
+
     handleSubmit = (event) => {
         event.preventDefault()
 
@@ -144,7 +265,7 @@ export class InternalLogin extends Component {
                                 <label htmlFor='check' className='custom-input-label ms-2'>
                                     Recuérdame
                                 </label>
-                            </div> */}
+                            </div> }
 
                             <div className='d-grid'>
                                 <input
@@ -198,7 +319,7 @@ export default function IniciarSesion() {
 
     return <InternalLogin navigate={navigate} params={p} />
 }
-
+*/
 
 
 
