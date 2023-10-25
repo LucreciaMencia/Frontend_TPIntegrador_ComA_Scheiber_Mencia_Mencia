@@ -16,6 +16,7 @@ function MuroComensal() {
       <nav>
         <BarraDeNavComensal
           nombre_comensal={infoComensal.nombre}
+          apellido_comensal={infoComensal.apellido}
         />
       </nav>
       <br></br>

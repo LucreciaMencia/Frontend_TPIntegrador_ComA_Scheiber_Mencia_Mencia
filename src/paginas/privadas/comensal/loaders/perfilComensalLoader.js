@@ -14,7 +14,7 @@ export default async function perfilComensalLoader() {
     const id_usuario = datosToken.id_usuario;
 
     //declaro la variable comida y guardo los datos obtenidos 
-    const comidas = await obtenerComidasValoradasPorComensal(id_usuario) //hace el fetch
+    const comidas = await obtenerComidasValoradasPorComensal(id_usuario, token) //hace el fetch
         .then((res) => res.json()) //se convierte en un objeto json
 
     //declaro la variable comensal y guardo los datos obtenidos

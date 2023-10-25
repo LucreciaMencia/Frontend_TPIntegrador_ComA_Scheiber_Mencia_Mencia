@@ -22,6 +22,7 @@ function EditarComensal() {
             <nav>
                 <BarraDeNavComensal
                     nombre_comensal={infoComensal.nombre}
+                    apellido_comensal={infoComensal.apellido}
                 />
             </nav>
             <br></br>
@@ -50,11 +51,11 @@ function EditarComensal() {
                         <h4 className='text-center'>Editar Comensal</h4>
                         <div className='mb-2'>
                             <label htmlFor='fnameresto'>{infoComensal.nombre}</label>
-                            <input type="text" placeholder='Juan Luis' className='form-control'></input>
+                            <input type="text" placeholder='Nuevo Nombre' className='form-control'></input>
                         </div>
                         <div className='mb-2'>
                             <label htmlFor='fnameresto'>{infoComensal.apellido}</label>
-                            <input type="text" placeholder='Guerra' className='form-control'></input>
+                            <input type="text" placeholder='Nuevo apellido' className='form-control'></input>
                         </div>
                         <div className='d-grid mt-2'>
                             <button className='btn btn-outline-secondary'>Guardar cambios</button>

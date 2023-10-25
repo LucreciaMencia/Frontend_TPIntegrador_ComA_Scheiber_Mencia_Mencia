@@ -11,10 +11,10 @@ export default async function editarComensalLoader() {
     const datosToken = obtenerId(token);
     const id_usuario = datosToken.id_usuario;
 
-    const usuario = await obtenerUsuario(id_usuario)
+    const usuario = await obtenerUsuario(id_usuario, token)
         .then((res) => res.json())
 
-    const comensal = await obtenerComensal(id_usuario)
+    const comensal = await obtenerComensal(id_usuario, token)
         .then((res) => res.json())
 
     return { usuario, comensal }

@@ -19,7 +19,7 @@ function BarraDeNavComensal(props) { //coloco props en los argumentos para recib
         <Container>
           {/* en el Navbar.Brand coloco el nombre del comensal que se mostrara en la pagina, 
           con el dato del nombre que pase desde perfilComensal*/}
-          <Navbar.Brand as={Link} to="/perfilComensal">{props.nombre_comensal}</Navbar.Brand>
+        <Navbar.Brand as={Link} to="/perfilComensal">{props.nombre_comensal} {props.apellido_comensal}</Navbar.Brand>
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
 

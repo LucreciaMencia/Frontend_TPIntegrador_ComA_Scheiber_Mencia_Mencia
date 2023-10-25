@@ -18,6 +18,7 @@ function PerfilComensal() {
       <nav>
         <BarraDeNavComensal //le paso al NavBar el dato nombre contenido en el objeto infoComensal
           nombre_comensal={infoComensal.nombre}
+          apellido_comensal={infoComensal.apellido}
         />
       </nav>
       <br></br>

@@ -1,26 +1,34 @@
 import { BarraDeNavRestaurante } from '../../../navBar/Index'
 import { DragDropImageUploader } from '../../../componentes/Index'
 import { useState } from 'react'
+import { useLoaderData } from 'react-router-dom';
+
 
 function CrearComida() {
-    console.log("crear comida")
-    
-    const [image, setImage] = useState();
-    console.log(image);
 
     const estilo = {
         color: 'white'
     }
 
+    //asigno en datos el objeto que me devuelve useLoaderData()
+    const datos = useLoaderData();
+
+    //asigno en infoRestaurante el objeto restaurante contenido en el objeto datos
+    const infoRestaurante = datos.restaurante;
+
+    
+    const [image, setImage] = useState();
+
     function onImagenSeleccionada(imageAttributes) {
         setImage(imageAttributes)
-        console.log("imagen seteada")
     }
 
     return (
         <>
             <nav>
-                <BarraDeNavRestaurante />
+                <BarraDeNavRestaurante
+                    nombre_restaurante={infoRestaurante.nombre}
+                />
             </nav>
             <br></br>
             <div className='login template d-flex justify-content-center align-items-center bg-white'>
