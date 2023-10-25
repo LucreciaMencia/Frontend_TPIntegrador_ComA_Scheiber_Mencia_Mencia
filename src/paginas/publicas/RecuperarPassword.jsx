@@ -1,10 +1,56 @@
-import {BarraDeNavInicio} from '../../navBar/Index'
+import { BarraDeNavInicio } from '../../navBar/Index'
 import '../../estilos/Estilos.css'
+import { obtenerUsuario } from '../../api/usuario/index'
+import { useNavigate } from 'react-router-dom'
+import { useCallback, useState } from 'react'
+import { toastExitoso, toastError } from '../../../utilerias/toast'
 
 export default function RecuperarPassword() {
     const estilo = {
         color: 'white'
     }
+
+    const navigate = useNavigate();
+
+    const [formulario, setFormulario] = useState({
+        mail: '',
+        password: ''
+    })
+
+    const handleSubmit = useCallback((event) => {
+        event.preventDefault()
+
+        let usuario = {
+            mail: formulario.mail,
+        }
+
+        let newPassword = {
+            password: formulario.password
+        }
+
+        const token = sessionStorage.getItem('token');
+        const id_usuario = obtenerId(token);
+
+        obtenerUsuario(usuario, id_usuario)
+        editarUsuario(newPassword, id_usuario)
+            .then(result => {
+                toastExitoso("Su contraseña ha sido modificada")
+                navigate('/iniciarSesion')
+            })
+            .catch((error) => {
+                toastError(error.message)
+            });
+    }, [formulario]);
+
+    function handleChange(event) {
+        setFormulario((valorActualDeFormulario) => {
+            return {
+                ...valorActualDeFormulario,
+                [event.target.name]: event.target.value
+            }
+        });
+    }
+
     return (
 
         <>
@@ -14,15 +60,23 @@ export default function RecuperarPassword() {
             <br></br>
             <div className='login template d-flex justify-content-center align-items-center bg-white'>
                 <div className='form_container p-5 rounded custom-bg'>
-                    <form style={estilo}>
+                    <form onSubmit={handleSubmit} style={estilo}>
                         <h3 className='text-center'>Recuperación de cuenta</h3>
                         <div className='mb-2'>
                             <label htmlFor='mail'>Email</label>
-                            <input type="email" placeholder='usuario10@mail.com' className='form-control'></input>
+                            <input type="email" placeholder='usuario10@mail.com' className='form-control'
+                                onChange={handleChange}
+                                value={formulario.mail}
+                                name='mail'>
+                            </input>
                         </div>
                         <div className='mb-2'>
                             <label htmlFor='password'>Nueva contraseña</label>
-                            <input type="password" placeholder='***********' className='form-control'></input>
+                            <input type="password" placeholder='***********' className='form-control'
+                                onChange={handleChange}
+                                value={formulario.password}
+                                name='password'>
+                            </input>
                         </div>
                         <div className='d-grid'>
                             <button className='btn btn-outline-secondary'>Cambiar contraseña</button>
