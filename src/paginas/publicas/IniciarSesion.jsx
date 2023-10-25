@@ -3,8 +3,7 @@ import { BarraDeNavInicio } from '../../navBar/Index'
 import { toastExitoso, toastError } from '../../utilerias/toast'
 import { useCallback, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
-import { obtenerId } from '../../utilerias/index'
-import { obtenerUsuario } from '../../api/usuario/index';
+import iniciarSesion from '../../api/iniciarSesion/iniciarSesion'
 
 function IniciarSesion() {
 
@@ -26,10 +25,8 @@ function IniciarSesion() {
             nickname: formulario.nickname,
             password: formulario.password
         }
-        const token = sessionStorage.getItem('token');
-        const id_usuario = obtenerId(token);
 
-        obtenerUsuario(usuario, id_usuario)
+        iniciarSesion(usuario)
             .then(result => {
                 toastExitoso("Bienvenido")
                 if (result.body.rol === "restaurante") {
