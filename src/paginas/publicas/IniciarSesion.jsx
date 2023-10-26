@@ -152,7 +152,7 @@ export class InternalLogin extends Component {
 
                             <div className='d-grid'>
                                 <input
-                                    className='btn btn-outline-secondary'
+                                    className='entrarButton btn btn-outline-secondary'
                                     type="submit"
                                     value="Entrar">
                                 </input>

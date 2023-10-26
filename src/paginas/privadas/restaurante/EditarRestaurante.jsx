@@ -23,14 +23,14 @@ function EditarRestaurante() {
     const infoRestaurante = datos.restaurante;
 
     const [formulario, setFormulario] = useState({
-        nickname: '',
-        mail: '',
+        nickname: infoUsuario.nickname,
+        mail: infoUsuario.mail,
         password: '',
-        nombre: '',
-        ubicacion: '',
-        contacto: '',
-        horario: '',
-        descripcion: ''
+        nombre: infoRestaurante.nombre,
+        ubicacion: infoRestaurante.ubicacion,
+        contacto: infoRestaurante.contacto,
+        horario: infoRestaurante.horario,
+        descripcion: infoRestaurante.descripcion
     })
 
 
@@ -85,7 +85,7 @@ function EditarRestaurante() {
                     <form onSubmit={handleSubmit} style={estilo}>
                         <h3 className='text-center'>Editar Usuario</h3>
                         <div className='mb-2'>
-                            <label htmlFor='fnameresto'>{infoUsuario.nickname}</label>
+                            <label htmlFor='fnameresto'>Nombre de usuario</label>
                             <input type="text" placeholder='Nuevo nickname' className='form-control'
                                 onChange={handleChange}
                                 value={formulario.nickname}
@@ -93,7 +93,7 @@ function EditarRestaurante() {
                             </input>
                         </div>
                         <div className='mb-2'>
-                            <label htmlFor='mail'>{infoUsuario.mail}</label>
+                            <label htmlFor='mail'>Mail</label>
                             <input type="email" placeholder='Nuevo mail' className='form-control'
                                 onChange={handleChange}
                                 value={formulario.mail}
@@ -109,14 +109,14 @@ function EditarRestaurante() {
                             </input>
                         </div>
                         <div className='d-grid mt-2'>
-                            <button className='btn btn-outline-secondary'>Guardar Cambios</button>
+                            <button className='entrarButton btn btn-outline-secondary'>Guardar Cambios</button>
                         </div>
                         <br></br>
 
 
-                        <h4 className='text-center'>Información del restaurante</h4>
+                        <h4 className='text-center'>Editar datos del restaurante</h4>
                         <div className='mb-2'>
-                            <label htmlFor='fnameresto'>{infoRestaurante.nombre}</label>
+                            <label htmlFor='fnameresto'>Nombre del restaurante</label>
                             <input type="text" placeholder='Nuevo nombre de restaurante' className='form-control'
                                 onChange={handleChange}
                                 value={formulario.nombre}
@@ -124,7 +124,7 @@ function EditarRestaurante() {
                             </input>
                         </div>
                         <div className='mb-2'>
-                            <label htmlFor='lname'>{infoRestaurante.ubicacion}</label>
+                            <label htmlFor='lname'>Ubicación</label>
                             <input type="text" placeholder='Nueva ubicación' className='form-control'
                                 onChange={handleChange}
                                 value={formulario.ubicacion}
@@ -132,7 +132,7 @@ function EditarRestaurante() {
                             </input>
                         </div>
                         <div className='mb-2'>
-                            <label htmlFor='lname'>{infoRestaurante.contacto}</label>
+                            <label htmlFor='lname'>Contacto</label>
                             <input type="text" placeholder='Nuevo contacto' className='form-control'
                                 onChange={handleChange}
                                 value={formulario.contacto}
@@ -140,7 +140,7 @@ function EditarRestaurante() {
                             </input>
                         </div>
                         <div className='mb-2'>
-                            <label htmlFor='lname'>{infoRestaurante.horario}</label>
+                            <label htmlFor='lname'>Horario de atención</label>
                             <input type="text" placeholder='Nuevo horario' className='form-control'
                                 onChange={handleChange}
                                 value={formulario.horario}
@@ -148,7 +148,7 @@ function EditarRestaurante() {
                             </input>
                         </div>
                         <div className='mb-2'>
-                            <label htmlFor='lname'>{infoRestaurante.descripcion}</label>
+                            <label htmlFor='lname'>Descripción</label>
                             <textarea type="text" placeholder='Nueva descripción' className='form-control'
                                 onChange={handleChange}
                                 value={formulario.descripcion}
@@ -156,7 +156,7 @@ function EditarRestaurante() {
                             </textarea>
                         </div>
                         <div className='d-grid mt-2'>
-                            <button className='btn btn-outline-secondary'>Guardar Cambios</button>
+                            <button className='entrarButton btn btn-outline-secondary'>Guardar Cambios</button>
                         </div>
                     </form>
                 </div>

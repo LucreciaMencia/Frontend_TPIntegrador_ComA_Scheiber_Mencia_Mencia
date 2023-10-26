@@ -42,7 +42,7 @@ function EditarComida() {
                             <input type="text" placeholder='' className='form-control'></input>
                         </div>
                         <div className='d-grid mt-2'>
-                            <button className='btn btn-outline-secondary'>Modificar</button>
+                            <button className='entrarButton btn btn-outline-secondary'>Modificar</button>
                         </div>
                     </form>
                 </div>

@@ -29,7 +29,7 @@ function PerfilRestaurante() {
         contacto={infoRestaurante.contacto}
         descripcion_restaurante={infoRestaurante.descripcion}
       />
-        <div className='row'>
+        <div className='rowComidas row'>
           {
             infoComidas.map(unaComida =>
               <FoodCard

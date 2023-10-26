@@ -56,7 +56,7 @@ function CrearComida() {
                             <DragDropImageUploader onImagenSeleccionada={onImagenSeleccionada} />
                         </div>
                         <div className='d-grid mt-2'>
-                            <button className='btn btn-outline-secondary'>Crear</button>
+                            <button className='entrarButton btn btn-outline-secondary'>Crear</button>
                         </div>
                     </form>
                 </div>

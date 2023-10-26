@@ -34,7 +34,7 @@ function InformacionRestaurante(props) {
           {activeTab === '#link' && (
             <>
               <Card.Title>{props.contacto}</Card.Title>
-              <Card.Text>Content for the Link tab.</Card.Text>
+              <Card.Text></Card.Text>
             </>
           )}
         </Card.Body>

@@ -9,9 +9,9 @@ import ListGroup from 'react-bootstrap/ListGroup';
 function FoodCard(props) {
     return (
         <div className='col-md-4'>
-            <Card style={{ width: '18rem' }}>
+            <Card style={{ width: '25rem' }}>
                 {/* en src deberia ir una url donde pedir las imagenes*/}
-                <Card.Img variant="top" src={`http://localhost:8080/comida/${props.id}/imagen`} style={{ height: '200px', objectFit: 'cover' }} />
+                <Card.Img variant="top" src={`http://localhost:8080/comida/${props.id}/imagen`} style={{ height: '300px', objectFit: 'cover' }} />
                 <Card.Body>
                     <Card.Title>{props.nombre}</Card.Title>
                     <Card.Text>

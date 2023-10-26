@@ -14,6 +14,12 @@ body {
     height: 100%;
 }
 
+.rowComidas {
+    margin-left: -88px;
+    width: 1300px;
+
+}
+
 @media screen and (max-width: 1000px) {
     .form_container {
         width: 45%;
@@ -24,6 +30,13 @@ body {
     .form_container {
         width: 65%;
     }
+}
+
+.col-md-4 {
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .navBg {
@@ -106,32 +119,32 @@ video {
     /* padding: 100px; */
 }
 
-.sub-titulo{
+.sub-titulo {
     max-width: 650px;
     text-align: center;
 }
 
-.d-grid{
+.d-grid {
     padding-top: 5px;
 }
 
-.drapDropCard{
+.drapDropCard {
     padding: 10px;
     box-shadow: 0 0 5px #ffdfdf25;
     border-radius: 5px;
     overflow: hidden;
 }
 
-.drapDropCard .dragDropTop{
+.drapDropCard .dragDropTop {
     text-align: center;
 }
 
-.drapDropCard p{
+.drapDropCard p {
     font-weight: bold;
     color: #ffffff;
 }
 
-.drapDropCard .drag-area{
+.drapDropCard .drag-area {
     height: 150px;
     border-radius: 5px;
     border: 2px dashed #0086fe;
@@ -145,11 +158,22 @@ video {
     margin-top: 10px;
 }
 
-.drapDropCard .drag-area .visible{
+.drapDropCard .drag-area .visible {
     font-size: 18px;
 }
 
-.btn-outline-secondary{
+.entrarButton {
+    background-color: #6cbc47;
+    --bs-btn-hover-border-color: #6cbc47;
+    color: white;
+}
+
+.entrarButton:hover {
+    background-color: #80d35a;
+
+}
+
+.btn-outline-secondary {
     width: 100%;
     margin-top: 5px;
 }
@@ -157,24 +181,24 @@ video {
 .form_container {
     width: 480px;
     height: 100%;
-  }
+}
 
-.form-control{
+.form-control {
     width: 100%;
 }
 
-.drapDropCard .select{
+.drapDropCard .select {
     color: #5256ad;
     margin-left: 5px;
     cursor: pointer;
     transition: 0.4s;
 }
 
-.drapDropCard .select:hover{
+.drapDropCard .select:hover {
     opacity: 0.6;
 }
 
-.drapDropCard .dragDrogContainer{
+.drapDropCard .dragDrogContainer {
     width: 100%;
     height: auto;
     display: flex;
@@ -186,7 +210,7 @@ video {
     margin-top: 10px;
 }
 
-.drapDropCard .dragDrogContainer .dragDrop-Image{
+.drapDropCard .dragDrogContainer .dragDrop-Image {
     width: 75px;
     margin-right: 5px;
     height: 75px;
@@ -194,13 +218,13 @@ video {
     margin-bottom: 8px;
 }
 
-.drapDropCard .dragDrogContainer .dragDrop-Image img{
+.drapDropCard .dragDrogContainer .dragDrop-Image img {
     width: 100%;
     height: 100%;
     border-radius: 5px;
 }
 
-.drapDropCard .dragDrogContainer .dragDrop-Image span{
+.drapDropCard .dragDrogContainer .dragDrop-Image span {
     position: absolute;
     top: -2px;
     right: 9px;
@@ -210,11 +234,11 @@ video {
 
 .drapDropCard input,
 .drapDropCard .drag-area .on-drop,
-.drapDropCard .drag-area.dragover .visible{
+.drapDropCard .drag-area.dragover .visible {
     display: none;
 }
 
-.delete{
+.delete {
     z-index: 999;
     color: #0086fe;
 }
