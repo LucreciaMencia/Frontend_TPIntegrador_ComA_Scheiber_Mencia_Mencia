@@ -33,32 +33,32 @@ function EditarComensal() {
                         <h3 className='text-center'>Editar Usuario</h3>
                         <br></br>
                         <div className='mb-2'>
-                            <label htmlFor='fnameresto'>{infoUsuario.nickname}</label>
-                            <input type="text" placeholder='nuevo nickname' className='form-control'></input>
+                            <label htmlFor='fnameresto'>Nombre de usuario</label>
+                            <input type="text" placeholder='nuevo nickname' className='form-control' value={infoUsuario.nickname}></input>
                         </div>
                         <div className='mb-2'>
-                            <label htmlFor='mail'>{infoUsuario.mail}</label>
-                            <input type="email" placeholder='nuevo mail' className='form-control'></input>
+                            <label htmlFor='mail'>Mail</label>
+                            <input type="email" value={infoUsuario.mail} placeholder='nuevo mail' className='form-control'></input>
                         </div>
                         <div className='mb-2'>
                             <label htmlFor='password'>Contraseña</label>
                             <input type="password" placeholder='**********' className='form-control'></input>
                         </div>
                         <div className='d-grid mt-2'>
-                            <button className='btn btn-outline-secondary'>Guardar cambios</button>
+                            <button className='entrarButton btn btn-outline-secondary'>Guardar cambios</button>
                         </div>
                         <br></br>
-                        <h4 className='text-center'>Editar Comensal</h4>
+                        <h4 className='text-center'>Editar datos del comensal</h4>
                         <div className='mb-2'>
-                            <label htmlFor='fnameresto'>{infoComensal.nombre}</label>
-                            <input type="text" placeholder='Nuevo Nombre' className='form-control'></input>
+                            <label htmlFor='fnameresto'>Nombre del comensal</label>
+                            <input type="text" value={infoComensal.nombre} placeholder='Nuevo Nombre' className='form-control'></input>
                         </div>
                         <div className='mb-2'>
-                            <label htmlFor='fnameresto'>{infoComensal.apellido}</label>
-                            <input type="text" placeholder='Nuevo apellido' className='form-control'></input>
+                            <label htmlFor='fnameresto'>Apellido</label>
+                            <input type="text" value={infoComensal.apellido} placeholder='Nuevo apellido' className='form-control'></input>
                         </div>
                         <div className='d-grid mt-2'>
-                            <button className='btn btn-outline-secondary'>Guardar cambios</button>
+                            <button className='entrarButton btn btn-outline-secondary'>Guardar cambios</button>
                         </div>
                     </form>
                 </div>

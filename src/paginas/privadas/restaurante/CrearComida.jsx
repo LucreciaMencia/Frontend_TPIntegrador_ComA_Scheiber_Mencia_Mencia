@@ -48,10 +48,10 @@ function CrearComida() {
                             <label htmlFor='fnameresto'>Precio</label>
                             <input type="text" placeholder='' className='form-control'></input>
                         </div>
-                        <div className='mb-2'>
+                        {/* <div className='mb-2'>
                             <label htmlFor='lname'>Agregado</label>
                             <input type="text" placeholder='' className='form-control'></input>
-                        </div>
+                        </div> */}
                         <div>
                             <DragDropImageUploader onImagenSeleccionada={onImagenSeleccionada} />
                         </div>
