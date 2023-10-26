@@ -149,6 +149,20 @@ video {
     font-size: 18px;
 }
 
+.btn-outline-secondary{
+    width: 100%;
+    margin-top: 5px;
+}
+
+.form_container {
+    width: 480px;
+    height: 100%;
+  }
+
+.form-control{
+    width: 100%;
+}
+
 .drapDropCard .select{
     color: #5256ad;
     margin-left: 5px;

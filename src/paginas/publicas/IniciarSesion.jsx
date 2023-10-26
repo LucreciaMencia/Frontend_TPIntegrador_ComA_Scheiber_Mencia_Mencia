@@ -5,6 +5,7 @@ import { useNavigate, useParams, Link, useLoaderData } from 'react-router-dom'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
 export class InternalLogin extends Component {
 
     constructor(props) {
@@ -15,7 +16,7 @@ export class InternalLogin extends Component {
             password: ''
         }
     }
-    
+
     handleSubmit = (event) => {
         event.preventDefault()
 
@@ -112,7 +113,10 @@ export class InternalLogin extends Component {
                     <BarraDeNavInicio />
                 </nav>
                 <br></br>
+
                 <div className='login template d-flex justify-content-center align-items-center bg-white'>
+
+
                     <div className='form_container p-5 rounded custom-bg'>
                         <form onSubmit={this.handleSubmit} style={estilo}>
                             <h3 className='text-center'>Iniciar Sesión</h3>
@@ -150,7 +154,7 @@ export class InternalLogin extends Component {
                                 <input
                                     className='btn btn-outline-secondary'
                                     type="submit"
-                                    value="Iniciar Sesión">
+                                    value="Entrar">
                                 </input>
                             </div>
                             <div className='d-grid'>
@@ -162,8 +166,6 @@ export class InternalLogin extends Component {
                                 </Link>
                             </div>
                             <br></br>
-
-
                             <Link to="/registroRestaurante" className='me-2'>
                                 <button
                                     className='btn btn-outline-secondary'>
@@ -178,6 +180,10 @@ export class InternalLogin extends Component {
                             </Link>
                             <br></br>
                         </form>
+
+                    </div>
+                    <div>
+
                     </div>
                 </div>
             </>
