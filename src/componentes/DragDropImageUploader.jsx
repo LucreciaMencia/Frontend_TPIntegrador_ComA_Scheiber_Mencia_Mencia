@@ -1,5 +1,7 @@
 import '../estilos/Estilos.css'
+import { MdImageSearch } from 'react-icons/md'
 import { useState, useRef } from 'react'
+
 
 function DragDropImageUploader(props) {
 
@@ -72,9 +74,9 @@ function DragDropImageUploader(props) {
                     {isDragging ? (
                         <span className="select">Suelte la imagen aqui</span>
                     ) : (<>
-                        Soltar aqui o {" "}
+                        Seleccione la imagen y arrastre o haga {" "}
                         <span className="select" role='button' onClick={selectFiles}>
-                            Cargar
+                            Click aquí <MdImageSearch/>
                         </span>
                     </>
                     )}

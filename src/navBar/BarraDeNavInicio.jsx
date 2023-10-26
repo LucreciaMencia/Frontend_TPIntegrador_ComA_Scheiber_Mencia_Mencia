@@ -4,7 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import { Outlet, Link } from 'react-router-dom';
 import { LuLogIn } from 'react-icons/lu'
-
+import cubiertos from '../imagenes/cubiertos.png';
 
 
 
@@ -13,15 +13,21 @@ function BarraDeNavInicio() {
     <>
       <Navbar expand="lg" className="navBg" variant='dark'>
         <Container>
+          <img
+            className='d-block centered-image'
+            style={{ width: '40px' }}
+            src={cubiertos}
+            alt="Asado." />
 
-
-          <Navbar.Brand as={Link} to="/">Mi menú</Navbar.Brand>
+          <Navbar.Brand as={Link} to="/">
+            <span className="ms-2">Mi menú</span>
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link as={Link} to="/infoDeLaPagina">¿Qué comemos hoy?</Nav.Link>
               <Nav.Link as={Link} to="/iniciarSesion">Iniciar Sesión
-              <LuLogIn/>
+                <LuLogIn />
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>

@@ -1,5 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@600&display=swap');
+
+body {
+    font-family: 'Red Hat Display', sans-serif;
+}
+
 .custom-bg {
-    background-color: #202020;
+    background-color: #212529;
+    box-shadow: 0 0 5px #635a5a;
 }
 
 .form_container {
@@ -20,15 +27,16 @@
 }
 
 .navBg {
-    background-color: #202020;
+    background-color: #bc4749;
+    box-shadow: 0 0 15px #635a5a;
 }
 
 .navBg2 {
-    background-color: #202020;
+    background-color: #bc4749;
 }
 
 .custom-bg-color {
-    background-color: #202020;
+    background-color: #bc4749;
 }
 
 .custom-left-bg-color {
