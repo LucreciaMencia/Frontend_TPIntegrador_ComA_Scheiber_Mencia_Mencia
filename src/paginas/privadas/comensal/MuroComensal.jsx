@@ -20,22 +20,20 @@ function MuroComensal() {
         />
       </nav>
       <br></br>
-      <div className='container justify-content-center align-items-center vh-100 bg-white'>
-        <div className='row'>
-          {infoComidas.map
-            (unaComida =>
-              <FoodCard
-                id={unaComida.id_comida}
-                nombre={unaComida.nombre}
-                descripcion={unaComida.descripcion}
-                restaurante={unaComida.nombre_restaurante}
-                precio={unaComida.precio}
-                puntaje={unaComida.promedio_estrella}
-                puedePuntuar={true}
-              />
-            )
-          }
-        </div>
+      <div className='container foodGrid vh-100 bg-white'>
+        {infoComidas.map
+              (unaComida =>
+                <FoodCard
+                  id={unaComida.id_comida}
+                  nombre={unaComida.nombre}
+                  descripcion={unaComida.descripcion}
+                  restaurante={unaComida.nombre_restaurante}
+                  precio={unaComida.precio}
+                  puntaje={unaComida.promedio_estrella}
+                  puedePuntuar={true}
+                />
+              )
+            }
       </div>
     </>
   )

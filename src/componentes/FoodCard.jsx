@@ -8,10 +8,10 @@ import ListGroup from 'react-bootstrap/ListGroup';
 
 function FoodCard(props) {
     return (
-        <div className='col-md-4'>
+        <div className='col-md-4 foodGridItem'>
             <Card style={{ width: '25rem' }}>
                 {/* en src deberia ir una url donde pedir las imagenes*/}
-                <Card.Img variant="top" src={`http://localhost:8080/comida/${props.id}/imagen`} style={{ height: '300px', objectFit: 'cover' }} />
+                <Card.Img variant="top" src={`http://localhost:8080/comida/${props.id}/imagen`} style={{ objectFit: 'cover' }} />
                 <Card.ImgOverlay style={{
                     display: "flex",
                     flexFlow: "column",

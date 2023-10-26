@@ -242,3 +242,15 @@ video {
     z-index: 999;
     color: #0086fe;
 }
+
+.foodGrid {
+    display: grid;
+    columns: 3;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-column-gap: 24px;
+    grid-row-gap: 5px;
+}
+
+.foodGridItem {
+    width: 100%;
+}
