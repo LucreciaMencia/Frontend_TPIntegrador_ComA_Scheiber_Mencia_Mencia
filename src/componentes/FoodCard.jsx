@@ -20,21 +20,18 @@ function FoodCard(props) {
                 }}>
                     <Card.Title
                         style={{
-                            marginBottom: "112px",
-                            marginLeft: "-5px",
+                            marginBottom: "88px",
+                            marginLeft: "-10px",
                             backgroundColor: "#ca2326",
                             color: "white",
-                            padding: "3px",
-                            borderRadius: "5px"
+                            padding: "3px 9px",
+                            fontSize: "12pt"
                         }}>
                             {props.nombre} ${props.precio}</Card.Title>
                 </Card.ImgOverlay>
-                <Card.Body style={{
-                    // backgroundColor: "#",
-                    // opacity: 0.1
-                }}>
+                <Card.Body style={{ padding: "8px"}}>
+                <Card.Text style={{ margin: "0px", marginTop: "5px" }}>{props.descripcion}</Card.Text>
                 <Card.Link as={Link} to="/perfilRestaurante"> {props.restaurante}</Card.Link>
-                    <Card.Text>{props.descripcion}</Card.Text>
                 </Card.Body>
                 <StarRating
                     valorInicial={props.puntaje}
