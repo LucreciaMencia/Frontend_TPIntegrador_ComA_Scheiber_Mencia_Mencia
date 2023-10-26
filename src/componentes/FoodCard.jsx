@@ -12,21 +12,33 @@ function FoodCard(props) {
             <Card style={{ width: '25rem' }}>
                 {/* en src deberia ir una url donde pedir las imagenes*/}
                 <Card.Img variant="top" src={`http://localhost:8080/comida/${props.id}/imagen`} style={{ height: '300px', objectFit: 'cover' }} />
-                <Card.Body>
-                    <Card.Title>{props.nombre}</Card.Title>
-                    <Card.Text>
-                        {props.descripcion}
-                    </Card.Text>
-                </Card.Body>
-                <ListGroup className="list-group-flush">
-                    <ListGroup.Item>PRECIO ${props.precio}</ListGroup.Item>
-                </ListGroup>
-                <Card.Body>
-                    <Card.Link as={Link} to="/perfilRestaurante">{props.restaurante}</Card.Link>
+                <Card.ImgOverlay style={{
+                    display: "flex",
+                    flexFlow: "column",
+                    alignItems: "start",
+                    justifyContent: "end"
+                }}>
+                    <Card.Title
+                        style={{
+                            marginBottom: "112px",
+                            marginLeft: "-5px",
+                            backgroundColor: "#ca2326",
+                            color: "white",
+                            padding: "3px",
+                            borderRadius: "5px"
+                        }}>
+                            {props.nombre} ${props.precio}</Card.Title>
+                </Card.ImgOverlay>
+                <Card.Body style={{
+                    // backgroundColor: "#",
+                    // opacity: 0.1
+                }}>
+                <Card.Link as={Link} to="/perfilRestaurante"> {props.restaurante}</Card.Link>
+                    <Card.Text>{props.descripcion}</Card.Text>
                 </Card.Body>
                 <StarRating
-                valorInicial={props.puntaje}
-                puedePuntuar={props.puedePuntuar} />
+                    valorInicial={props.puntaje}
+                    puedePuntuar={props.puedePuntuar} />
             </Card>
            
         </div>

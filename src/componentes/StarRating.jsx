@@ -16,7 +16,7 @@ function StarRating(props) {
   const [hover, setHover] = useState(null);
 
   return (
-    <div className='AppStar'>
+    <div className='AppStar' style={{marginLeft: "auto", marginRight: "auto"}}>
       {[...Array(5)].map((star, index) => {
 
         const currentRating = index + 1;
