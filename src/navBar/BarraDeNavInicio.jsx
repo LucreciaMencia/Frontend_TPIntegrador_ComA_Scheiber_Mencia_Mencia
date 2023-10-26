@@ -4,7 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import { Outlet, Link } from 'react-router-dom';
 import { LuLogIn } from 'react-icons/lu'
-import cubiertos from '../imagenes/cubiertos.png';
+import cubiertos from '../imagenes/cubiertos.svg';
 
 
 

@@ -68,7 +68,7 @@ function DragDropImageUploader(props) {
         <div className="drapDropCard">
             <div className="dragDropTop">
                 <p>
-                    Arrastar y cargar
+                    Foto de la comida
                 </p>
                 <div className="drag-area" onDragOver={onDragOver} onDragLeave={onDragLeave} onDrop={onDrop}>
                     {isDragging ? (
