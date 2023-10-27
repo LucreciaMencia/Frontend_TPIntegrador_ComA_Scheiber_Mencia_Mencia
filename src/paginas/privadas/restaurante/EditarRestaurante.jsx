@@ -4,8 +4,9 @@ import { useCallback, useState } from 'react'
 import { toastExitoso, toastError } from '../../../utilerias/toast'
 import { editarRestaurante } from '../../../api/restaurante/index'
 import { useNavigate } from 'react-router-dom'
-import { obtenerId } from '../../../utilerias';
+import { obtenerId } from '../../../utilerias/index';
 import { useLoaderData } from 'react-router-dom';
+import editarUsuario from '../../../api/usuario/editarUsuario'
 
 function EditarRestaurante() {
     const estilo = {
@@ -42,7 +43,10 @@ function EditarRestaurante() {
         const usuario = {
             nickname: formulario.nickname,
             mail: formulario.mail,
-            password: formulario.password,
+            password: formulario.password
+        }
+
+        const restaurante = {
             nombre: formulario.nombre,
             ubicacion: formulario.ubicacion,
             contacto: formulario.contacto,
@@ -53,7 +57,8 @@ function EditarRestaurante() {
         const token = sessionStorage.getItem('token'); //guardamos el token de sessionStorage
         const id_usuario = obtenerId(token);
 
-        editarRestaurante(usuario, id_usuario)
+        editarUsuario(usuario, id_usuario)
+        editarRestaurante(restaurante, id_usuario)
             .then(result => { //si es request fue exitoso se ejecuta la funcion del then, por eso no es necesario revisar ahí si la respuesta fue ok o no
                 toastExitoso("Su perfil ha sido modificado")
                 navigate('/perfilRestaurante')

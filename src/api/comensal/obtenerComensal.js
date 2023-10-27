@@ -1,5 +1,6 @@
 
 export default function obtenerComensal(id_usuario, token) {
+
     const parametros = {
         method: 'GET',
         headers: {
