@@ -37,7 +37,7 @@ function CrearComida() {
     const handleSubmit = useCallback((event) => {
         event.preventDefault()
 
-        crearImagen(image)
+       
         crearComida(formulario)
             .then(result => { 
                 toastExitoso("Se ha cargado una nueva comida")
@@ -47,6 +47,8 @@ function CrearComida() {
                 toastError(error.message)
             });
     }, [formulario, navigate]);
+
+    crearImagen(image)
 
     function handleChange(event) {
         setFormulario((valorActualDeFormulario) => {
