@@ -15,8 +15,8 @@ function MuroComensal() {
     <>
       <nav>
         <BarraDeNavComensal
-          nombre_comensal={infoComensal.nombre}
-          apellido_comensal={infoComensal.apellido}
+          nombre_comensal={infoComensal.nombre_comensal}
+          apellido_comensal={infoComensal.apellido_comensal}
         />
       </nav>
       <br></br>
@@ -25,11 +25,11 @@ function MuroComensal() {
               (unaComida =>
                 <FoodCard
                   id={unaComida.id_comida}
-                  nombre={unaComida.nombre}
-                  descripcion={unaComida.descripcion}
-                  restaurante={unaComida.nombre_restaurante}
-                  precio={unaComida.precio}
-                  puntaje={unaComida.promedio_estrella}
+                  nombre={unaComida.nombre_comida}
+                  descripcion={unaComida.descripcion_comida}
+                  restaurante={unaComida.nombre_resto}
+                  precio={unaComida.precio_comida}
+                  puntaje={unaComida.promedio_estrellas}
                   puedePuntuar={true}
                 />
               )
