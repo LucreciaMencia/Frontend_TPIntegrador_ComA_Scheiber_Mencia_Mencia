@@ -1,14 +1,19 @@
 import { BarraDeNavRestaurante } from '../../../navBar/Index'
 import { DragDropImageUploader } from '../../../componentes/Index'
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { useLoaderData } from 'react-router-dom';
-
+import { crearComida } from '../../../api/comida'
+import { toastExitoso, toastError } from '../../../utilerias/toast';
+import { useNavigate } from 'react-router-dom';
+import { crearImagen } from '../../../api/imagen'
 
 function CrearComida() {
 
     const estilo = {
         color: 'white'
     }
+
+    const navigate = useNavigate();
 
     //asigno en datos el objeto que me devuelve useLoaderData()
     const datos = useLoaderData();
@@ -32,13 +37,8 @@ function CrearComida() {
     const handleSubmit = useCallback((event) => {
         event.preventDefault()
 
-        const comida = {
-            nombre: formulario.nombre,
-            descripcion: formulario.descripcion,
-            precio: formulario.precio
-        }
-
-        crearComida(comida)
+        crearImagen(image)
+        crearComida(formulario)
             .then(result => { 
                 toastExitoso("Se ha cargado una nueva comida")
                 navigate('/perfilRestaurante')
@@ -88,7 +88,7 @@ function CrearComida() {
 
                         <div className='mb-2'>
                             <label htmlFor='fnameresto'>Precio</label>
-                            <input type="text" placeholder='' className='form-control'
+                            <input type="text" placeholder='Solo ingresar números' className='form-control'
                              onChange={handleChange}
                              value={formulario.precio}
                              name='precio'>

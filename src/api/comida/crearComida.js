@@ -11,5 +11,5 @@ export default function crearComida(datosComida) {
         }
     }
 
-    return fetch("http://localhost:8080/comida/", parametros) //ver ruta
+    return fetch("http://localhost:8080/comida/cargar", parametros) //ver ruta
 }

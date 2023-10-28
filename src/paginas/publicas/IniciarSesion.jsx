@@ -27,12 +27,18 @@ function IniciarSesion() {
         }
 
         iniciarSesion(usuario)
-            .then(result => {
-                toastExitoso("Bienvenido")
-                if (result.body.rol === "restaurante") {
-                    navigate("/perfilRestaurante")
-                } else {
+            .then(response => response.json()) //decodifica el body del response
+            .then(body => {
+                sessionStorage.setItem('token', body.token)
+                if (body.rol === "restaurante") {  //para este caso es mejor usar un switch
+                    toastExitoso("Bienvenido")
+                    navigate("/crearComida")
+                } else if (body.rol === "comensal") {
+                    toastExitoso("Bienvenido")
                     navigate("/muroComensal")
+                } else {
+                    toastError("Usuario o contraseña incorrectos")
+                    navigate( "/iniciarSesion")
                 }
             })
             .catch((error) => {
@@ -41,7 +47,12 @@ function IniciarSesion() {
     }, [formulario, navigate]);
 
     const handleChange = (event) => {
-        setFormulario({ [event.target.name]: event.target.value });
+        setFormulario((formularioActual) => {
+            return {
+                ...formularioActual,
+                [event.target.name]: event.target.value
+            }
+        });
     };
 
     return (

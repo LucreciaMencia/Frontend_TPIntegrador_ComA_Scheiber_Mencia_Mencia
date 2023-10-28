@@ -4,7 +4,6 @@ import { toastExitoso, toastError } from '../../utilerias/toast'
 import { useCallback, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { crearComensal } from '../../api/comensal/index'
-import { crearUsuario } from '../../api/usuario/index'
 
 function RegistroComensal() {
 
@@ -25,19 +24,7 @@ function RegistroComensal() {
     const handleSubmit = useCallback((event) => {
         event.preventDefault()
 
-        const usuario = {
-            nickname: formulario.nickname,
-            mail: formulario.mail,
-            password: formulario.password
-        }
-
-        const comensal = {
-            nombre: formulario.nombre,
-            apellido: formulario.apellido
-        }
-
-        crearUsuario(usuario)
-        crearComensal(comensal)
+        crearComensal(formulario)
             .then(result => {
                 toastExitoso("El usuario se ha registrado con éxito")
                 navigate('/iniciarSesion')
@@ -50,9 +37,13 @@ function RegistroComensal() {
     }, [formulario, navigate]);
 
     const handleChange = (event) => {
-        setFormulario({ [event.target.name]: event.target.value });
+        setFormulario((formularioActual) => {
+            return {
+                ...formularioActual,
+                [event.target.name]: event.target.value
+            }
+        });
     };
-
 
     return (
         <>

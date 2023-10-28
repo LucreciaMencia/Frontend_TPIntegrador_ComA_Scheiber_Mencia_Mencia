@@ -1,4 +1,3 @@
-
 export default function crearImagen(imagen) {
 
     const token = sessionStorage.getItem('token')
@@ -13,5 +12,5 @@ export default function crearImagen(imagen) {
         'Authorization': `Bearer ${token}`
     }
 
-    return fetch("http://localhost:8080/comida/imagen", parametros)
+    return fetch(`http://localhost:8080/comida/${id_comida}/imagen`, parametros)
 }

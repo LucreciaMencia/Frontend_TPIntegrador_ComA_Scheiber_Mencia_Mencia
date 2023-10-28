@@ -7,5 +7,5 @@ export default function crearComensal(datosUsuario) {
         }
     }
 
-    return fetch("http://localhost:8080/comensal/", parametros) 
+    return fetch("http://localhost:8080/usuario/comensal", parametros) 
 }

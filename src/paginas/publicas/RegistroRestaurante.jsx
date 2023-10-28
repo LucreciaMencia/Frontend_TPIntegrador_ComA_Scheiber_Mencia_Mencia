@@ -1,7 +1,6 @@
 import '../../estilos/Estilos.css'
 import { BarraDeNavInicio } from '../../navBar/Index'
 import { crearRestaurante } from '../../api/restaurante/index'
-import { crearUsuario } from '../../api/usuario/index'
 import { toastError, toastExitoso } from '../../utilerias/toast'
 import { useCallback, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -19,28 +18,16 @@ function RegistroRestaurante() {
         mail: '',
         password: '',
         nombre: '',
-        apellido: ''
+        ubicacion: '',
+        contacto: '',
+        horario: '',
+        descripcion: ''
     })
 
     const handleSubmit = useCallback((event) => {
         event.preventDefault()
 
-        const usuario = {
-            nickname: formulario.nickname,
-            mail: formulario.mail,
-            password: formulario.password
-        }
-
-        const restaurante = {
-            nombre: formulario.nombre,
-            ubicacion: formulario.ubicacion,
-            contacto: formulario.contacto,
-            horario: formulario.horario,
-            descripcion: formulario.descripcion
-        }
-
-        crearUsuario(usuario)
-        crearRestaurante(restaurante)
+        crearRestaurante(formulario)
             .then(result => {
                 toastExitoso("El usuario se ha registrado con éxito")
                 navigate('/iniciarSesion')
@@ -49,11 +36,15 @@ function RegistroRestaurante() {
                 toastError(error.message)
             });
 
-
     }, [formulario, navigate]);
 
     const handleChange = (event) => {
-        setFormulario({ [event.target.name]: event.target.value });
+        setFormulario((formularioActual) => {
+            return {
+                ...formularioActual,
+                [event.target.name]: event.target.value
+            }
+        });
     };
 
     return (
