@@ -9,5 +9,5 @@ export default function obtenerComidasRestaurante(id_usuario) {
       'Authorization': `Bearer ${token}`
     }
   }
-  return fetch(`http://localhost:8080/comida?restaurante=${id_usuario}`, parametros)
+  return fetch(`http://localhost:8080/comida?id_restaurante=${id_usuario}`, parametros)
 }
