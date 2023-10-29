@@ -72,7 +72,7 @@ function CrearComida() {
         <>
             <nav>
                 <BarraDeNavRestaurante
-                    nombre_restaurante={infoRestaurante.nombre}
+                    nombre_restaurante={infoRestaurante.nombre_resto}
                 />
             </nav>
             <br></br>

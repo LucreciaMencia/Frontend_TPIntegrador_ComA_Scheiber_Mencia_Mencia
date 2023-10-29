@@ -16,7 +16,7 @@ function PerfilRestaurante() {
     <>
       <nav>
         <BarraDeNavRestaurante //le paso al NavBar el dato nombre contenido en el objeto infoRestaurante
-          nombre_restaurante={infoRestaurante.nombre}
+          nombre_restaurante={infoRestaurante.nombre_resto}
         />
       </nav>
       <br></br>
