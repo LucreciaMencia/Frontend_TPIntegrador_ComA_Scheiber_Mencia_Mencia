@@ -7,6 +7,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 
 
 function FoodCard(props) {
+    console.log('Dibujando FoodCard')
     return (
         <div className='col-md-4 foodGridItem'>
             <Card style={{ width: '25rem' }}>

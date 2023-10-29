@@ -21,9 +21,9 @@ function DragDropImageUploader(props) {
         const files = event.target.files;
 
         // Si hay alguno, muestra sus miniaturas
-        const imageAttributes = mostrarMiniatura(files);
+        mostrarMiniatura(files);
 
-        onImagenSeleccionadaCallback(imageAttributes)
+        onImagenSeleccionadaCallback(files[0])
     }
 
     function mostrarMiniatura(files) {
@@ -37,8 +37,6 @@ function DragDropImageUploader(props) {
         };
         
         setImage(imageAttributes);
-
-        return imageAttributes;
     }
 
     function deleteImage(index) {
@@ -59,10 +57,9 @@ function DragDropImageUploader(props) {
         event.preventDefault();
         setIsDragging(false);
         const files = event.dataTransfer.files;
-        const imageAttributes = mostrarMiniatura(files);
-        onImagenSeleccionadaCallback(imageAttributes)
+        mostrarMiniatura(files);
+        onImagenSeleccionadaCallback(files[0])
     }
-
 
     return (
         <div className="drapDropCard">

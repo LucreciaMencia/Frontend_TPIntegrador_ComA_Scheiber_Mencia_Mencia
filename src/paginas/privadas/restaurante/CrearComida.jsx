@@ -24,8 +24,8 @@ function CrearComida() {
 
     const [image, setImage] = useState();
 
-    function onImagenSeleccionada(imageAttributes) {
-        setImage(imageAttributes)
+    function onImagenSeleccionada(file) {
+        setImage(file)
     }
 
     const [formulario, setFormulario] = useState({
@@ -34,28 +34,37 @@ function CrearComida() {
         precio: ''
     })
 
-    const id_comida = '';
     const handleSubmit = useCallback((event) => {
         event.preventDefault()
 
-
         crearComida(formulario)
-            .then(result => {
-                id_comida = result.id_comida;
+            .then(response => response.json())
+            .then(bodyDeRespuesta => { 
+                // Si estamos aca, es porque salio bien la carga de la comida
+                // Vamos a agarrar el ID de la comida recien  creada
+                const id_comida = bodyDeRespuesta.id_comida;
+
+                console.log('antes de cargar la img')
+
+                // Con ese ID vamos a llamar a crearImagen, y devolvemos esa llamada
+                return crearImagen(image, id_comida);
             })
-            .catch((error) => {
-                toastError("No se pudo cargar la comida.")
-            });
-        crearImagen(image, id_comida)
-            .then(result => {
+            .then(resultadoCrearImagen => {
+                // Si estamos aca es porque la carga de la imagen funcionó!
+                // Entonces podemos mostrar el toast de que anduvo todo
                 toastExitoso("Se ha cargado una nueva comida y su imagen")
                 navigate('/perfilRestaurante')
             })
             .catch((error) => {
-                toastError("No se pudo cargar la imagen.")
+                console.log(error)
+                // Si estamos aca es porque la carga de la comida salió mal, o
+                // la carga de la imagen salió mal.
+                toastError("Lo sentimos, hubo un error cargando los datos de la comida o su imagen :(")
             });
 
-    }, [formulario, navigate]);
+        // Aca van todas las dependecias de este useCallback, es decir: todas las variables que fueron
+        // creadas fuera de su ambito (sus llaves)
+    }, [formulario, navigate, image]); 
 
 
 

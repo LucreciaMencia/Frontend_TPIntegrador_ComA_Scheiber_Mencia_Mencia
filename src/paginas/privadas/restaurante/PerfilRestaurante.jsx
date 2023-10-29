@@ -22,23 +22,23 @@ function PerfilRestaurante() {
       <br></br>
 
       <div className='container justify-content-center align-items-center vh-100 bg-white'>
-        
-      <InformacionRestaurante
-        ubicacion={infoRestaurante.ubicacion}
-        horario={infoRestaurante.horario}
-        contacto={infoRestaurante.contacto}
-        descripcion_restaurante={infoRestaurante.descripcion}
-      />
+
+        <InformacionRestaurante
+          ubicacion={infoRestaurante.ubicacion}
+          horario={infoRestaurante.horario}
+          contacto={infoRestaurante.contacto}
+          descripcion_restaurante={infoRestaurante.descripcion}
+        />
         <div className='rowComidas row'>
           {
             infoComidas.map(unaComida =>
               <FoodCard
                 id={unaComida.id_comida}
-                nombre={unaComida.nombre}
-                descripcion={unaComida.descripcion}
-                restaurante={unaComida.nombre_restaurante}
-                precio={unaComida.precio}
-                puntaje={unaComida.promedio_estrella}
+                nombre={unaComida.nombre_comida}
+                descripcion={unaComida.descripcion_comida}
+                restaurante={unaComida.nombre_resto}
+                precio={unaComida.precio_comida}
+                puntaje={unaComida.promedio_estrellas}
                 puedePuntuar={false}
               />)
           }

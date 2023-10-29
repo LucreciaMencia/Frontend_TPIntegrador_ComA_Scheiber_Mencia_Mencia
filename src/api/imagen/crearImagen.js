@@ -1,10 +1,8 @@
 export default function crearImagen(imagen, id_comida) {
-
     const token = sessionStorage.getItem('token')
 
     const data = new FormData();
-    data.append('image', imagen.url);
-    data.append('nombre', imagen.name);
+    data.append('image', imagen, imagen.name);
 
     const parametros = {
         method: 'POST',
