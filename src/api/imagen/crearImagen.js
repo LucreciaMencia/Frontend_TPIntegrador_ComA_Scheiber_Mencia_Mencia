@@ -1,4 +1,4 @@
-export default function crearImagen(imagen) {
+export default function crearImagen(imagen, id_comida) {
 
     const token = sessionStorage.getItem('token')
 

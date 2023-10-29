@@ -21,7 +21,7 @@ function CrearComida() {
     //asigno en infoRestaurante el objeto restaurante contenido en el objeto datos
     const infoRestaurante = datos.restaurante;
 
-    
+
     const [image, setImage] = useState();
 
     function onImagenSeleccionada(imageAttributes) {
@@ -34,21 +34,30 @@ function CrearComida() {
         precio: ''
     })
 
+    const id_comida = '';
     const handleSubmit = useCallback((event) => {
         event.preventDefault()
 
-       
+
         crearComida(formulario)
-            .then(result => { 
-                toastExitoso("Se ha cargado una nueva comida")
+            .then(result => {
+                id_comida = result.id_comida;
+            })
+            .catch((error) => {
+                toastError("No se pudo cargar la comida.")
+            });
+        crearImagen(image, id_comida)
+            .then(result => {
+                toastExitoso("Se ha cargado una nueva comida y su imagen")
                 navigate('/perfilRestaurante')
             })
             .catch((error) => {
-                toastError(error.message)
+                toastError("No se pudo cargar la imagen.")
             });
+
     }, [formulario, navigate]);
 
-    crearImagen(image)
+
 
     function handleChange(event) {
         setFormulario((valorActualDeFormulario) => {
@@ -74,27 +83,27 @@ function CrearComida() {
                         <div className='mb-2'>
                             <label htmlFor='fnameresto'>Nombre de comida</label>
                             <input type="text" placeholder='' className='form-control'
-                             onChange={handleChange}
-                             value={formulario.nombre}
-                             name='nombre'>
-                             </input>
+                                onChange={handleChange}
+                                value={formulario.nombre}
+                                name='nombre'>
+                            </input>
                         </div>
                         <div className='mb-2'>
                             <label htmlFor='lname'>Descripción</label>
                             <textarea type="text" placeholder='' className='form-control'
-                             onChange={handleChange}
-                             value={formulario.descripcion}
-                             name='descripcion'>
+                                onChange={handleChange}
+                                value={formulario.descripcion}
+                                name='descripcion'>
                             </textarea>
                         </div>
 
                         <div className='mb-2'>
                             <label htmlFor='fnameresto'>Precio</label>
                             <input type="text" placeholder='Solo ingresar números' className='form-control'
-                             onChange={handleChange}
-                             value={formulario.precio}
-                             name='precio'>
-                             </input>
+                                onChange={handleChange}
+                                value={formulario.precio}
+                                name='precio'>
+                            </input>
                         </div>
                         {/* <div className='mb-2'>
                             <label htmlFor='lname'>Agregado</label>
