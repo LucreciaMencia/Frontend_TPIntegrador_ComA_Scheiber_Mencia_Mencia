@@ -33,7 +33,7 @@ export default function RecuperarPassword() {
             .catch((error) => {
                 toastError(error.message)
             });
-    }, [formulario]);
+    }, [formulario, navigate]);
 
     function handleChange(event) {
         setFormulario({[event.target.name]: event.target.value});
