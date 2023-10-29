@@ -24,11 +24,11 @@ function EditarComensal() {
     const navigate = useNavigate();
 
     const [formulario, setFormulario] = useState({
-        nickname: '',
-        mail: '',
+        nickname: infoUsuario.nickname,
+        mail: infoUsuario.mail,
         password: '',
-        nombre: '',
-        apellido: ''
+        nombre: infoComensal.nombre_comensal,
+        apellido: infoComensal.apellido_comensal
     })
 
     const handleSubmit = useCallback((event) => {
@@ -46,13 +46,13 @@ function EditarComensal() {
         }
 
         const token = sessionStorage.getItem('token');
-        const id_usuario = obtenerId(token);
+        const id_usuario = obtenerId(token).id_usuario;
 
         editarUsuario(usuario, id_usuario)
         editarComensal(comensal, id_usuario)
             .then(result => { 
                 toastExitoso("Se han modificado sus datos")
-                navigate('/perfilComensal')
+                navigate('/editarComensal')
             })
             .catch((error) => {
                 toastError(error.message)
@@ -73,8 +73,8 @@ function EditarComensal() {
         <>
             <nav>
                 <BarraDeNavComensal
-                    nombre_comensal={infoComensal.nombre}
-                    apellido_comensal={infoComensal.apellido}
+                    nombre_comensal={infoComensal.nombre_comensal}
+                    apellido_comensal={infoComensal.apellido_comensal}
                 />
             </nav>
             <br></br>
@@ -85,15 +85,15 @@ function EditarComensal() {
                         <h3 className='text-center'>Editar Usuario</h3>
                         <br></br>
                         <div className='mb-2'>
-                            <label htmlFor='fnameresto'>{infoUsuario.nickname}</label>
+                            <label htmlFor='fnameresto'>Nickname</label>
                             <input type="text" placeholder='nuevo nickname' className='form-control'
                             onChange={handleChange}
                             value={formulario.nickname}
-                            name='nickmane'>
+                            name='nickname'>
                             </input>
                         </div>
                         <div className='mb-2'>
-                            <label htmlFor='mail'>{infoUsuario.mail}</label>
+                            <label htmlFor='mail'>Mail</label>
                             <input type="email" placeholder='nuevo mail' className='form-control'
                             onChange={handleChange}
                             value={formulario.mail}
@@ -114,7 +114,7 @@ function EditarComensal() {
                         <br></br>
                         <h4 className='text-center'>Editar datos del comensal</h4>
                         <div className='mb-2'>
-                            <label htmlFor='fnameresto'>{infoComensal.nombre}</label>
+                            <label htmlFor='fnameresto'>Nombre del comensal</label>
                             <input type="text" placeholder='Juan Luis' className='form-control'
                             onChange={handleChange}
                             value={formulario.nombre}
@@ -122,7 +122,7 @@ function EditarComensal() {
                             </input>
                         </div>
                         <div className='mb-2'>
-                            <label htmlFor='fnameresto'>{infoComensal.apellido}</label>
+                            <label htmlFor='fnameresto'>Apellido</label>
                             <input type="text" placeholder='Guerra' className='form-control'
                             onChange={handleChange}
                             value={formulario.apellido}

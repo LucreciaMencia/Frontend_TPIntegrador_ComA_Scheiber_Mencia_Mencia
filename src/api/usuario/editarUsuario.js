@@ -11,5 +11,5 @@ export default function editarUsuario(datosUsuario, id_usuario) {
         }
     }
 
-    return fetch(`http://localhost:8080/usuario/${id_usuario}`, parametros) //ver ruta
+    return fetch(`http://localhost:8080/usuario/${id_usuario}`, parametros) 
 }

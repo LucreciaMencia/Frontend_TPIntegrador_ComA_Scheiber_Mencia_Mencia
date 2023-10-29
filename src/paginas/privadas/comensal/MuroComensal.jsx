@@ -11,6 +11,7 @@ function MuroComensal() {
   //asigno en infoComensal el objeto comensal contenido en el objeto datos
   const infoComensal = datos.comensal;
   console.log(infoComensal)
+  
   return (
     <>
       <nav>
