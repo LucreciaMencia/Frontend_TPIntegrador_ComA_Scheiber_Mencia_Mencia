@@ -1,6 +1,8 @@
 import { BarraDeNavComensal } from '../../../navBar/Index'
 import { FoodCard } from '../../../componentes/Index';
 import { useLoaderData } from 'react-router-dom';
+// import { useCallback } from 'react';
+// import crearValoracion from '../../../api/valoraciones/crearValoracion';
 
 function MuroComensal() {
   //asigno en datos el objeto que me devuelve useLoaderData()
@@ -11,7 +13,8 @@ function MuroComensal() {
   //asigno en infoComensal el objeto comensal contenido en el objeto datos
   const infoComensal = datos.comensal;
   console.log(infoComensal)
-  
+
+
   return (
     <>
       <nav>

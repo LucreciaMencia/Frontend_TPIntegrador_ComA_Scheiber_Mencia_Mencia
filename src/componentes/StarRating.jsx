@@ -15,8 +15,16 @@ function StarRating(props) {
   const [rating, setRating] = useState(valorInicial)
   const [hover, setHover] = useState(null);
 
+  // Agregar un controlador de eventos onChange para capturar el valor de calificación seleccionada
+  const handleRatingChange = (currentRating) => {
+    setRating(currentRating);
+    props.onRatingChange(currentRating); // Llama a la función proporcionada por MuroComensal
+  };
+
+
+
   return (
-    <div className='AppStar' style={{marginLeft: "auto", marginRight: "auto"}}>
+    <div className='AppStar' style={{ marginLeft: "auto", marginRight: "auto" }}>
       {[...Array(5)].map((star, index) => {
 
         const currentRating = index + 1;
@@ -27,11 +35,11 @@ function StarRating(props) {
               type='radio'
               name='rating'
               value={currentRating}
-              onClick={() => setRating(currentRating)}>                
+              onClick={() => handleRatingChange(currentRating)}>
             </input>
             <BsFire
               className='star'
-              size={50}
+              size={35}
               color={currentRating <= (hover || rating) ? "#c44536" : "#adb5bd"}
               onMouseEnter={props.puedePuntuar ? () => setHover(currentRating) : null}
               onMouseLeave={props.puedePuntuar ? () => setHover(null) : null}

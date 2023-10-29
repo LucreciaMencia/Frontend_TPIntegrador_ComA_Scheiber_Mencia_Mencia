@@ -1,15 +1,22 @@
 import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import { StarRating } from './Index';
-import ListGroup from 'react-bootstrap/ListGroup';
-
+import crearValoracion from '../api/valoraciones/crearValoracion';
 
 
 
 function FoodCard(props) {
-    console.log('Dibujando FoodCard')
+
+    function onRatingChange(puntaje){
+        const datosValoracion = {
+            "idComida": props.id,
+            "puntaje": puntaje
+        }
+        crearValoracion(datosValoracion)
+    }
+
     return (
-        <div className='col-md-4 foodGridItem'>
+        <div className='col-md-4 foodGridItem' style={{ display: 'flex', flexFlow: 'column' }}>
             <Card style={{ width: '25rem' }}>
                 {/* en src deberia ir una url donde pedir las imagenes*/}
                 <Card.Img variant="top" src={`http://localhost:8080/comida/${props.id}/imagen`} style={{ objectFit: 'cover' }} />
@@ -28,17 +35,19 @@ function FoodCard(props) {
                             padding: "3px 9px",
                             fontSize: "12pt"
                         }}>
-                            {props.nombre} ${props.precio}</Card.Title>
+                        {props.nombre} ${props.precio}</Card.Title>
                 </Card.ImgOverlay>
-                <Card.Body style={{ padding: "8px"}}>
-                <Card.Text style={{ margin: "0px", marginTop: "5px" }}>{props.descripcion}</Card.Text>
-                <Card.Link as={Link} to="/perfilRestaurante"> {props.restaurante}</Card.Link>
+                <Card.Body style={{ padding: "8px" }}>
+                    <Card.Text style={{ margin: "0px", marginTop: "5px" }}>{props.descripcion}</Card.Text>
+                    <Card.Link as={Link} to="/perfilRestaurante"> {props.restaurante}</Card.Link>
                 </Card.Body>
-                <StarRating
-                    valorInicial={props.puntaje}
-                    puedePuntuar={props.puedePuntuar} />
+
             </Card>
-           
+            <StarRating
+                valorInicial={props.puntaje}
+                puedePuntuar={props.puedePuntuar}
+                onRatingChange={onRatingChange}
+            />
         </div>
     )
 }
