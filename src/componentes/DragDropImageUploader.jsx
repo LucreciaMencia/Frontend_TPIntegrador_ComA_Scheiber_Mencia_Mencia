@@ -5,9 +5,15 @@ import { useState, useRef } from 'react'
 
 function DragDropImageUploader(props) {
 
-    const [image, setImage] = useState();
+    // Inicializamos la preview de la imagen con una imagen inicial
+    // Si no nos dieron la prop 'imagenInicial', entonces la misma
+    // estará undefined y por ende no se verá la preview
+    const [image, setImage] = useState(props.imagenInicial);
+
     const [isDragging, setIsDragging] = useState(false);
+
     const fileInputRef = useRef(null);
+
     const onImagenSeleccionadaCallback = props.onImagenSeleccionada;
 
     function selectFiles() {

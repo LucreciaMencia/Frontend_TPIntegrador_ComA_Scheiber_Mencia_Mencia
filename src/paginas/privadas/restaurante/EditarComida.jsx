@@ -3,10 +3,8 @@ import { BarraDeNavRestaurante } from '../../../navBar/Index'
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import { useCallback, useState } from 'react'
 import { toastExitoso, toastError } from '../../../utilerias/toast'
-import { obtenerId } from '../../../utilerias/index';
 import { DragDropImageUploader } from '../../../componentes/Index'
-
-
+import { crearImagen } from '../../../api/imagen';
 
 function EditarComida() {
 
@@ -25,7 +23,11 @@ function EditarComida() {
     //asigno en infoRestaurante el objeto restaurante contenido en el objeto datos
     const infoRestaurante = datos.restaurante;
 
-    const [image, setImage] = useState();
+    const urlImagenExistente = `http://localhost:8080/comida/${infoComida.id_comida}/imagen`;
+
+    const [image, setImage] = useState({
+        url: urlImagenExistente
+    });
 
     function onImagenSeleccionada(file) {
         setImage(file)
@@ -41,23 +43,27 @@ function EditarComida() {
         event.preventDefault()
 
         const comida = {
-            nombre: formulario.nombre_comida,
-            descripcion: formulario.descripcion_comida,
-            precio: formulario.precio_comida
+            nombre: formulario.nombre,
+            descripcion: formulario.descripcion,
+            precio: formulario.precio
         }
 
-        const token = sessionStorage.getItem('token');
-        const id_comida = obtenerId(token);
-
-        editarComida(comida, id_comida)
+        editarComida(comida, infoComida.id_comida)
+            .then(() => {
+                if (image && image.url === undefined) {
+                    return crearImagen(image, infoComida.id_comida);
+                } else {
+                    return;
+                }
+            })
             .then(result => { 
-                toastExitoso(`La comida ${id_comida} ha sido modificada`)
-                // navigate('/perfilRestaurante')
+                toastExitoso(`La comida ${infoComida.nombre_comida} ha sido modificada`)
+                navigate('/perfilRestaurante')
             })
             .catch((error) => {
                 toastError(error.message)
             });
-    }, [formulario, navigate]);
+    }, [formulario, navigate, image, infoComida]);
 
     function handleChange(event) {
         setFormulario((valorActualDeFormulario) => {
@@ -106,7 +112,9 @@ function EditarComida() {
                             </input>
                         </div>
                         <div>
-                            <DragDropImageUploader onImagenSeleccionada={onImagenSeleccionada} />
+                            <DragDropImageUploader
+                                onImagenSeleccionada={onImagenSeleccionada}
+                                imagenInicial={image}/>
                         </div>
                         <div className='d-grid mt-2'>
                             <button className='entrarButton btn btn-outline-secondary'>Guardar Cambios</button>
