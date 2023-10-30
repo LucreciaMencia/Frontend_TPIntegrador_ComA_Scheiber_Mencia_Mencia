@@ -5,6 +5,7 @@ import { useCallback, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import iniciarSesion from '../../api/iniciarSesion/iniciarSesion'
 
+
 function IniciarSesion() {
 
     const estilo = {
@@ -15,7 +16,12 @@ function IniciarSesion() {
 
     const [formulario, setFormulario] = useState({
         nickname: '',
-        password: '',
+        password: ''
+    })
+
+    const [errores, setErrores] = useState({
+        nickname: '',
+        password: ''
     })
 
     const handleSubmit = useCallback((event) => {
@@ -26,25 +32,45 @@ function IniciarSesion() {
             password: formulario.password
         }
 
-        iniciarSesion(usuario)
-            .then(response => response.json()) //decodifica el body del response
-            .then(body => {
-                sessionStorage.setItem('token', body.token)
-                if (body.rol === "restaurante") {  //para este caso es mejor usar un switch
-                    toastExitoso("Bienvenido")
-                    navigate("/crearComida")
-                } else if (body.rol === "comensal") {
-                    toastExitoso("Bienvenido")
-                    navigate("/muroComensal")
-                } else {
-                    toastError("Usuario o contraseña incorrectos")
-                    navigate( "/iniciarSesion")
-                }
-            })
-            .catch((error) => {
-                toastError(error.message)
-            });
+        if (validateForm()) {
+            iniciarSesion(usuario)
+                .then(response => response.json()) //decodifica el body del response
+                .then(body => {
+                    sessionStorage.setItem('token', body.token)
+                    if (body.rol === "restaurante") {  //para este caso es mejor usar un switch
+                        toastExitoso("Bienvenido")
+                        navigate("/crearComida")
+                    } else if (body.rol === "comensal") {
+                        toastExitoso("Bienvenido")
+                        navigate("/muroComensal")
+                    } else {
+                        toastError("Usuario o contraseña incorrectos")
+                        navigate("/iniciarSesion")
+                    }
+                })
+                .catch((error) => {
+                    toastError(error.message)
+                });
+        }
     }, [formulario, navigate]);
+
+    const validateForm = () => {
+        let valid = true;
+        const errors = {};
+
+        if (!formulario.nickname) {
+            valid = false;
+            errors.nickname = "Campo obligatorio";
+        }
+
+        if (!formulario.password) {
+            valid = false;
+            errors.password = "Campo obligatorio";
+        }
+
+        setErrores(errors);
+        return valid;
+    };
 
     const handleChange = (event) => {
         setFormulario((formularioActual) => {
@@ -75,6 +101,7 @@ function IniciarSesion() {
                                 value={formulario.nickname}
                                 name='nickname'>
                             </input>
+                            {errores.nickname && <p style={{ color: 'red' }}>{errores.nickname}</p>}
                         </div>
                         <div className='mb-2'>
                             <label htmlFor='password'>Contraseña</label>
@@ -86,6 +113,7 @@ function IniciarSesion() {
                                 value={formulario.password}
                                 name='password'>
                             </input>
+                            {errores.password && <p style={{ color: 'red' }}> {errores.password}</p>}
                         </div>
 
                         {/* <div className='mb-2'>

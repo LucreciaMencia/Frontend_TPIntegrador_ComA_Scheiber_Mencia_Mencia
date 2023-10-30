@@ -21,20 +21,68 @@ function RegistroComensal() {
         apellido: ''
     })
 
+    const [errores, setErrores] = useState({
+        nickname: '',
+        mail: '',
+        password: '',
+        nombre: '',
+        apellido: ''
+    })
+
     const handleSubmit = useCallback((event) => {
         event.preventDefault()
 
-        crearComensal(formulario)
-            .then(result => {
-                toastExitoso("El usuario se ha registrado con éxito")
-                navigate('/iniciarSesion')
-            })
-            .catch((error) => {
-                toastError(error.message)
-            });
-
+        if (validateForm()) {
+            crearComensal(formulario)
+                .then(result => {
+                    toastExitoso("El usuario se ha registrado con éxito")
+                    navigate('/iniciarSesion')
+                })
+                .catch((error) => {
+                    toastError(error.message)
+                });
+        }
 
     }, [formulario, navigate]);
+
+    const validateForm = () => {
+        let valid = true;
+        const errors = {};
+
+        if (!formulario.nickname) {
+            valid = false;
+            errors.nickname = "Campo obligatorio";
+        }
+
+        if (!formulario.mail) {
+            valid = false;
+            errors.mail = "Campo obligatorio";
+        } else if (!/\S+@\S+\.\S+/.test(formulario.mail)) {
+            valid = false;
+            errors.mail = "El email es inválido"
+        }
+
+        if (!formulario.password) {
+            valid = false;
+            errors.password = "Campo obligatorio";
+        } else if (formulario.password.length < 6) {
+            valid = false;
+            errors.password = "La contraseña debe tener al menos 6 dígitos"
+        }
+
+        if (!formulario.nombre) {
+            valid = false;
+            errors.nombre = "Campo obligatorio";
+        }
+
+        if (!formulario.apellido) {
+            valid = false;
+            errors.apellido = "Campo obligatorio";
+        }
+
+        setErrores(errors);
+        return valid;
+    };
 
     const handleChange = (event) => {
         setFormulario((formularioActual) => {
@@ -64,6 +112,7 @@ function RegistroComensal() {
                                 value={formulario.nickname}
                                 name='nickname'>
                             </input>
+                            {errores.nickname && <p style={{ color: 'red' }}>{errores.nickname}</p>}
                         </div>
                         <div className='mb-2'>
                             <label htmlFor='mail'>Email</label>
@@ -72,6 +121,7 @@ function RegistroComensal() {
                                 value={formulario.mail}
                                 name='mail'>
                             </input>
+                            {errores.mail && <p style={{ color: 'red' }}>{errores.mail}</p>}
                         </div>
                         <div className='mb-2'>
                             <label htmlFor='password'>Contraseña</label>
@@ -80,22 +130,25 @@ function RegistroComensal() {
                                 value={formulario.password}
                                 name='password'>
                             </input>
+                            {errores.password && <p style={{ color: 'red' }}>{errores.password}</p>}
                         </div>
                         <div className='mb-2'>
                             <label htmlFor='fnameresto'>Nombre </label>
                             <input type="text" placeholder='Juan Luis' className='form-control'
                                 onChange={handleChange}
                                 value={formulario.nombre}
-                                name='nombre'
-                            ></input>
+                                name='nombre'>
+                            </input>
+                            {errores.nombre && <p style={{ color: 'red' }}>{errores.nombre}</p>}
                         </div>
                         <div className='mb-2'>
                             <label htmlFor='fnameresto'>Apellido </label>
                             <input type="text" placeholder='Guerra' className='form-control'
                                 onChange={handleChange}
                                 value={formulario.apellido}
-                                name='apellido'
-                            ></input>
+                                name='apellido'>
+                            </input>
+                            {errores.nombre && <p style={{ color: 'red' }}>{errores.nombre}</p>}
                         </div>
                         <div className='d-grid mt-2'>
                             <button className='btn btn-outline-secondary'>Registrarme</button>
