@@ -34,15 +34,22 @@ function CrearComida() {
         precio: ''
     })
 
+    const [errores, setErrores] = useState({
+        nombre: '',
+        descripcion: '',
+        precio: ''
+    })
+
     const handleSubmit = useCallback((event) => {
         event.preventDefault()
 
-        crearComida(formulario)
-            .then(response => response.json())
-            .then(bodyDeRespuesta => { 
-                // Si estamos aca, es porque salio bien la carga de la comida
-                // Vamos a agarrar el ID de la comida recien  creada
-                const id_comida = bodyDeRespuesta.id_comida;
+        if (validateForm()) {
+            crearComida(formulario)
+                .then(response => response.json())
+                .then(bodyDeRespuesta => {
+                    // Si estamos aca, es porque salio bien la carga de la comida
+                    // Vamos a agarrar el ID de la comida recien  creada
+                    const id_comida = bodyDeRespuesta.id_comida;
 
                 // Con ese ID vamos a llamar a crearImagen, y devolvemos esa llamada
                 return crearImagen(image, id_comida);
@@ -59,11 +66,36 @@ function CrearComida() {
                 // la carga de la imagen salió mal.
                 toastError("Lo sentimos, hubo un error cargando los datos de la comida o su imagen :(")
             });
-
+        }
         // Aca van todas las dependecias de este useCallback, es decir: todas las variables que fueron
         // creadas fuera de su ambito (sus llaves)
-    }, [formulario, navigate, image]); 
+    }, [formulario, navigate, image]);
 
+    const validateForm = () => {
+        let valid = true;
+        const errors = {};
+
+        if (!formulario.nombre) {
+            valid = false;
+            errors.nombre = "Campo obligatorio";
+        }
+
+        if (!/^.{1,255}$/.test(formulario.descripcion)) {
+            valid = false;
+            errors.descripcion = "El campo no admite más de 255 caracteres";
+        }
+
+        if (!formulario.precio) {
+            valid = false;
+            errors.precio = "Campo obligatorio";
+        } else if (!/^[0-9]+$/.test(formulario.precio)) {
+            valid = false;
+            errors.precio = "Sólo se admiten números"
+        }
+
+        setErrores(errors);
+        return valid;
+    };
 
 
     function handleChange(event) {
@@ -94,6 +126,7 @@ function CrearComida() {
                                 value={formulario.nombre}
                                 name='nombre'>
                             </input>
+                            {errores.nombre && <p style={{ color: 'red' }}>{errores.nombre}</p>}
                         </div>
                         <div className='mb-2'>
                             <label htmlFor='lname'>Descripción</label>
@@ -102,6 +135,7 @@ function CrearComida() {
                                 value={formulario.descripcion}
                                 name='descripcion'>
                             </textarea>
+                            {errores.descripcion && <p style={{ color: 'red' }}>{errores.descripcion}</p>}
                         </div>
 
                         <div className='mb-2'>
@@ -111,6 +145,7 @@ function CrearComida() {
                                 value={formulario.precio}
                                 name='precio'>
                             </input>
+                            {errores.precio && <p style={{ color: 'red' }}>{errores.precio}</p>}
                         </div>
                         {/* <div className='mb-2'>
                             <label htmlFor='lname'>Agregado</label>
