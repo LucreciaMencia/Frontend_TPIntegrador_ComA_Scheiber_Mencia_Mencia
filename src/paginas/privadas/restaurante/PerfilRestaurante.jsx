@@ -17,6 +17,7 @@ function PerfilRestaurante() {
       <nav>
         <BarraDeNavRestaurante //le paso al NavBar el dato nombre contenido en el objeto infoRestaurante
           nombre_restaurante={infoRestaurante.nombre_resto}
+          borrarRestaurante={infoRestaurante.id_usuario}
         />
       </nav>
       <br></br>
@@ -42,6 +43,7 @@ function PerfilRestaurante() {
                 puedeBorrarValoracion={false}
                 puedeEditar={true}
                 linkRestaurante={false}
+                borrarComida={true}
               />)
           }
         </div>

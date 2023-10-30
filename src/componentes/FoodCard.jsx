@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
-import { EditarUnaComida, StarRating } from './Index';
+import { BorrarComida, EditarUnaComida, StarRating } from './Index';
 import crearValoracion from '../api/valoraciones/crearValoracion';
 import { BorrarValoracion } from './Index';
 
@@ -53,6 +53,13 @@ function FoodCard(props) {
                 {
                     props.puedeEditar ?
                         <EditarUnaComida
+                            id_comida={props.id}
+                        />
+                        : null
+                }
+                {
+                    props.borrarComida ?
+                        <BorrarComida
                             id_comida={props.id}
                         />
                         : null

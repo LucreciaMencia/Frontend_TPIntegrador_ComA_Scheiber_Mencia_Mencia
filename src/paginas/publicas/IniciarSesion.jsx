@@ -32,7 +32,7 @@ function IniciarSesion() {
                 sessionStorage.setItem('token', body.token)
                 if (body.rol === "restaurante") {  //para este caso es mejor usar un switch
                     toastExitoso("Bienvenido")
-                    navigate("/crearComida")
+                    navigate("/perfilRestaurante")
                 } else if (body.rol === "comensal") {
                     toastExitoso("Bienvenido")
                     navigate("/muroComensal")
