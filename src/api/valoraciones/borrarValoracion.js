@@ -1,4 +1,4 @@
-export default function borrarValoracin(id_valoracion) {
+export default function borrarValoracion(id_valoracion) {
 
     const token = sessionStorage.getItem('token')
 

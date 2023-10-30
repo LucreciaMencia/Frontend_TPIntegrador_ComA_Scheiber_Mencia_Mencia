@@ -28,11 +28,11 @@ function EditarRestaurante() {
         nickname: infoUsuario.nickname,
         mail: infoUsuario.mail,
         password: '',
-        nombre: infoRestaurante.nombre,
+        nombre: infoRestaurante.nombre_resto,
         ubicacion: infoRestaurante.ubicacion,
         contacto: infoRestaurante.contacto,
         horario: infoRestaurante.horario,
-        descripcion: infoRestaurante.descripcion
+        descripcion: infoRestaurante.descripcion_resto
     })
 
 
@@ -56,13 +56,13 @@ function EditarRestaurante() {
         }
 
         const token = sessionStorage.getItem('token'); //guardamos el token de sessionStorage
-        const id_usuario = obtenerId(token);
+        const id_usuario = obtenerId(token).id_usuario;
 
         editarUsuario(usuario, id_usuario)
         editarRestaurante(restaurante, id_usuario)
             .then(result => { //si es request fue exitoso se ejecuta la funcion del then, por eso no es necesario revisar ahí si la respuesta fue ok o no
                 toastExitoso("Su perfil ha sido modificado")
-                navigate('/perfilRestaurante')
+                navigate('/editarRestaurante')
             })
             .catch((error) => {
                 toastError(error.message)

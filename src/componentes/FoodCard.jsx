@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import { StarRating } from './Index';
 import crearValoracion from '../api/valoraciones/crearValoracion';
+import { BorrarValoracion } from './Index';
 
 
 
@@ -43,11 +44,16 @@ function FoodCard(props) {
                 </Card.Body>
 
             </Card>
+            <div>
+            <BorrarValoracion
+                id_valoracion={props.valoracion}
+            />
             <StarRating
                 valorInicial={props.puntaje}
                 puedePuntuar={props.puedePuntuar}
                 onRatingChange={onRatingChange}
             />
+            </div>
         </div>
     )
 }

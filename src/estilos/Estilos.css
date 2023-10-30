@@ -254,3 +254,11 @@ video {
 .foodGridItem {
     width: 100%;
 }
+
+.extintor {
+    color: #adb5bd; 
+  }
+
+.extintor:hover {
+    color: #bc4749;
+  }

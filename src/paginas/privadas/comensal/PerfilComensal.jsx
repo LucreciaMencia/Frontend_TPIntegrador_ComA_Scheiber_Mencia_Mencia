@@ -2,8 +2,6 @@ import { BarraDeNavComensal } from '../../../navBar/Index'
 import { useLoaderData } from 'react-router-dom';
 import { FoodCard } from '../../../componentes/Index';
 
-
-
 function PerfilComensal() {
   //asigno en datos el objeto que me devuelve useLoaderData()
   const datos = useLoaderData();
@@ -33,7 +31,8 @@ function PerfilComensal() {
                 descripcion={unaComida.descripcion_comida}
                 restaurante={unaComida.nombre_resto}
                 precio={unaComida.precio_comida}
-                puntaje={unaComida.promedio_estrellas}
+                puntaje={unaComida.puntaje}
+                valoracion={unaComida.id_valoracion}
                 puedePuntuar={true}
               />)
           }
