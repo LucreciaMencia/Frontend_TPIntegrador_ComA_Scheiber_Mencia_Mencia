@@ -34,6 +34,8 @@ function PerfilComensal() {
                 puntaje={unaComida.puntaje}
                 valoracion={unaComida.id_valoracion}
                 puedePuntuar={true}
+                puedeBorrarValoracion={true}
+                puedeEditar={false}
               />)
           }
         </div>

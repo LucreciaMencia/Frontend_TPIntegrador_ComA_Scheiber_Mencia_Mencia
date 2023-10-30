@@ -1,14 +1,13 @@
 import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
-import { StarRating } from './Index';
+import { EditarUnaComida, StarRating } from './Index';
 import crearValoracion from '../api/valoraciones/crearValoracion';
 import { BorrarValoracion } from './Index';
 
 
-
 function FoodCard(props) {
 
-    function onRatingChange(puntaje){
+    function onRatingChange(puntaje) {
         const datosValoracion = {
             "idComida": props.id,
             "puntaje": puntaje
@@ -45,14 +44,24 @@ function FoodCard(props) {
 
             </Card>
             <div>
-            <BorrarValoracion
-                id_valoracion={props.valoracion}
-            />
-            <StarRating
-                valorInicial={props.puntaje}
-                puedePuntuar={props.puedePuntuar}
-                onRatingChange={onRatingChange}
-            />
+                {
+                    props.puedeBorrarValoracion ?
+                        <BorrarValoracion
+                            id_valoracion={props.valoracion}
+                        /> : null
+                }
+                {
+                    props.puedeEditar ?
+                        <EditarUnaComida
+                            id_comida={props.id}
+                        />
+                        : null
+                }
+                <StarRating
+                    valorInicial={props.puntaje}
+                    puedePuntuar={props.puedePuntuar}
+                    onRatingChange={onRatingChange}
+                />
             </div>
         </div>
     )

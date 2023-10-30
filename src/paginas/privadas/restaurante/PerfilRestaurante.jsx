@@ -36,10 +36,12 @@ function PerfilRestaurante() {
                 id={unaComida.id_comida}
                 nombre={unaComida.nombre_comida}
                 descripcion={unaComida.descripcion_comida}
-                restaurante={unaComida.nombre_resto}
                 precio={unaComida.precio_comida}
                 puntaje={unaComida.promedio_estrellas}
                 puedePuntuar={false}
+                puedeBorrarValoracion={false}
+                puedeEditar={true}
+                linkRestaurante={false}
               />)
           }
         </div>

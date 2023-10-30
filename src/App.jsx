@@ -38,7 +38,7 @@ function App() {
         <Route loader={crearComidaLoader} path='/crearComida' element={<CrearComida />}></Route>
         <Route loader={perfilRestauranteLoader} path='/perfilRestaurante' element={<PerfilRestaurante />}></Route>
         <Route loader={editarRestauranteLoader} path='/editarRestaurante' element={<EditarRestaurante />}></Route>
-        <Route loader={editarComidaLoader} path='/editarComida' element={<EditarComida />}></Route>
+        <Route loader={editarComidaLoader} path='/editarComida/:id_comida' element={<EditarComida />}></Route>
       </>
     )
   );

@@ -35,6 +35,8 @@ function MuroComensal() {
                   precio={unaComida.precio_comida}
                   puntaje={unaComida.promedio_estrellas}
                   puedePuntuar={true}
+                  puedeBorrarValoracion={false}
+                  puedeEditar={false}
                 />
               )
             }

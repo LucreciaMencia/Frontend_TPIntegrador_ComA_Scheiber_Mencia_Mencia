@@ -4,7 +4,9 @@ import { obtenerRestaurante } from "../../../../api/restaurante";
 
 import { obtenerId } from '../../../../utilerias/index';
 
-export default async function editarComidaLoader() {
+export default async function editarComidaLoader(argumentos) {
+
+    const id_comida = argumentos.params.id_comida
 
     const token = sessionStorage.getItem('token') //guardamos el token de sessionStorage
 
@@ -13,7 +15,7 @@ export default async function editarComidaLoader() {
     const id_usuario = datosToken.id_usuario;
 
     
-    const comida = await obtenerUnaComida(id_usuario)
+    const comida = await obtenerUnaComida(id_comida)
         .then((res) => res.json())
 
     //declaro la variable restaurante y guardo los datos obtenidos

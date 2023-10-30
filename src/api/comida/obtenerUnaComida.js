@@ -10,5 +10,5 @@ export default function obtenerUnaComida(id_comida) {
         }
     }
 
-    return fetch(`http://localhost:8080/comida?comida=${id_comida}`, parametros) 
+    return fetch(`http://localhost:8080/comida?id_comida=${id_comida}`, parametros) 
 }

@@ -4,9 +4,14 @@ import { useLoaderData, useNavigate } from 'react-router-dom';
 import { useCallback, useState } from 'react'
 import { toastExitoso, toastError } from '../../../utilerias/toast'
 import { obtenerId } from '../../../utilerias/index';
+import { DragDropImageUploader } from '../../../componentes/Index'
+
 
 
 function EditarComida() {
+
+    const navigate = useNavigate();
+
     const estilo = {
         color: 'white'
     }
@@ -20,21 +25,25 @@ function EditarComida() {
     //asigno en infoRestaurante el objeto restaurante contenido en el objeto datos
     const infoRestaurante = datos.restaurante;
 
-    const navigate = useNavigate();
+    const [image, setImage] = useState();
+
+    function onImagenSeleccionada(file) {
+        setImage(file)
+    }
 
     const [formulario, setFormulario] = useState({
-        nombre: '',
-        descripcion: '',
-        precio: ''
+        nombre: infoComida.nombre_comida,
+        descripcion: infoComida.descripcion_comida,
+        precio: infoComida.precio_comida
     })
 
     const handleSubmit = useCallback((event) => {
         event.preventDefault()
 
         const comida = {
-            nombre: formulario.nombre,
-            descripcion: formulario.descripcion,
-            precio: formulario.precio
+            nombre: formulario.nombre_comida,
+            descripcion: formulario.descripcion_comida,
+            precio: formulario.precio_comida
         }
 
         const token = sessionStorage.getItem('token');
@@ -43,7 +52,7 @@ function EditarComida() {
         editarComida(comida, id_comida)
             .then(result => { 
                 toastExitoso(`La comida ${id_comida} ha sido modificada`)
-                navigate('/perfilRestaurante')
+                // navigate('/perfilRestaurante')
             })
             .catch((error) => {
                 toastError(error.message)
@@ -63,16 +72,16 @@ function EditarComida() {
         <>
             <nav>
                 <BarraDeNavRestaurante
-                    nombre_restaurante={infoRestaurante.nombre}
+                    nombre_restaurante={infoRestaurante.nombre_resto}
                 />
             </nav>
             <br></br>
             <div className='login template d-flex justify-content-center align-items-center bg-white'>
                 <div className='form_container p-5 rounded custom-bg'>
                     <form onSubmit={handleSubmit} style={estilo}>
-                        <h3 className='text-center'>Modifica tu comida</h3>
+                        <h3 className='text-center'>Editar comida</h3>
                         <div className='mb-2'>
-                            <label htmlFor='fnameresto'>{infoComida.nombre}</label>
+                            <label htmlFor='fnameresto'>Nombre</label>
                             <input type="text" placeholder='' className='form-control'
                             onChange={handleChange}
                             value={formulario.nombre}
@@ -80,7 +89,7 @@ function EditarComida() {
                             </input>
                         </div>
                         <div className='mb-2'>
-                            <label htmlFor='lname'>{infoComida.descripcion}</label>
+                            <label htmlFor='lname'>Descripción</label>
                             <textarea type="text" placeholder='' className='form-control'
                             onChange={handleChange}
                             value={formulario.descripcion}
@@ -89,15 +98,18 @@ function EditarComida() {
                         </div>
 
                         <div className='mb-2'>
-                            <label htmlFor='fnameresto'>{infoComida.precio}</label>
-                            <input type="text" placeholder='' className='form-control'
+                            <label htmlFor='fnameresto'>Precio</label>
+                            <input type="text" placeholder='$' className='form-control'
                             onChange={handleChange}
                             value={formulario.precio}
                             name='precio'>
                             </input>
                         </div>
+                        <div>
+                            <DragDropImageUploader onImagenSeleccionada={onImagenSeleccionada} />
+                        </div>
                         <div className='d-grid mt-2'>
-                            <button className='entrarButton btn btn-outline-secondary'>Modificar</button>
+                            <button className='entrarButton btn btn-outline-secondary'>Guardar Cambios</button>
                         </div>
                     </form>
                 </div>

@@ -44,8 +44,6 @@ function CrearComida() {
                 // Vamos a agarrar el ID de la comida recien  creada
                 const id_comida = bodyDeRespuesta.id_comida;
 
-                console.log('antes de cargar la img')
-
                 // Con ese ID vamos a llamar a crearImagen, y devolvemos esa llamada
                 return crearImagen(image, id_comida);
             })
