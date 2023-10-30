@@ -1,6 +1,8 @@
 import { BarraDeNavComensal } from '../../../navBar/Index'
 import { useLoaderData } from 'react-router-dom';
 import { FoodCard } from '../../../componentes/Index';
+import BorrarComensal from '../../../componentes/BorrarComensal';
+import { obtenerId } from '../../../utilerias';
 
 function PerfilComensal() {
   //asigno en datos el objeto que me devuelve useLoaderData()
@@ -10,6 +12,11 @@ function PerfilComensal() {
   const infoComidas = datos.comidas;
   //asigno en infoComensal el objeto comensal contenido en el objeto datos
   const infoComensal = datos.comensal;
+
+  const token = sessionStorage.getItem('token')
+  const datosToken = obtenerId(token);
+  const id_usuario = datosToken.id_usuario;
+
 
   return (
     <>
@@ -38,6 +45,11 @@ function PerfilComensal() {
                 puedeEditar={false}
               />)
           }
+        </div>
+        <div>
+          <BorrarComensal
+            id_usuario={id_usuario}
+          />
         </div>
       </div>
     </>

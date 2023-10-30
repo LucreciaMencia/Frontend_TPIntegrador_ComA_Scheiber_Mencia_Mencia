@@ -1,3 +1,4 @@
+import BorrarRestaurante from '../../../componentes/BorrarRestaurante';
 import { InformacionRestaurante, FoodCard } from '../../../componentes/Index';
 import { BarraDeNavRestaurante } from '../../../navBar/Index';
 import { useLoaderData } from 'react-router-dom';
@@ -17,7 +18,6 @@ function PerfilRestaurante() {
       <nav>
         <BarraDeNavRestaurante //le paso al NavBar el dato nombre contenido en el objeto infoRestaurante
           nombre_restaurante={infoRestaurante.nombre_resto}
-          borrarRestaurante={infoRestaurante.id_usuario}
         />
       </nav>
       <br></br>
@@ -47,7 +47,13 @@ function PerfilRestaurante() {
               />)
           }
         </div>
+        <div>
+          <BorrarRestaurante
+            id_usuario={infoRestaurante.id_usuario}
+          />
+        </div>
       </div>
+
 
     </>
   )

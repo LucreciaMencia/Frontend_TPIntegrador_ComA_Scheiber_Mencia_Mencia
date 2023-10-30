@@ -30,9 +30,12 @@ function BarraDeNavRestaurantes(props) { //coloco props en los argumentos para r
                         <Nav className="me-auto">
 
                             <Nav.Link as={Link} to="/crearComida">Crear Comidas</Nav.Link>
+
                             <Nav.Link as={Link} to="/editarRestaurante">Editar Perfil</Nav.Link>
+
                             <Nav.Link onClick={cerrarSesion} as={Link} to="/">Cerrar Sesión
-                            <LuLogOut/>
+                                <LuLogOut />
+
                             </Nav.Link>
 
                         </Nav>
