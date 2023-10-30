@@ -3,6 +3,7 @@ import { useLoaderData } from 'react-router-dom';
 import { FoodCard } from '../../../componentes/Index';
 import BorrarComensal from '../../../componentes/BorrarComensal';
 import { obtenerId } from '../../../utilerias';
+import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 
 function PerfilComensal() {
   //asigno en datos el objeto que me devuelve useLoaderData()
@@ -28,12 +29,14 @@ function PerfilComensal() {
       </nav>
       <br></br>
 
-      <div className='container justify-content-center align-items-center vh-100 bg-white'>
-        <div className='row'>
-          {
+      <ResponsiveMasonry
+        columnsCountBreakPoints={{ 600: 1, 1220: 2, 1840: 3 }}>
+        <Masonry>
+        {
             infoComidas.map(unaComida =>
               <FoodCard
                 id={unaComida.id_comida}
+                id_restaurante={unaComida.id_restaurante}
                 nombre={unaComida.nombre_comida}
                 descripcion={unaComida.descripcion_comida}
                 restaurante={unaComida.nombre_resto}
@@ -45,13 +48,10 @@ function PerfilComensal() {
                 puedeEditar={false}
               />)
           }
-        </div>
-        <div>
-          <BorrarComensal
-            id_usuario={id_usuario}
-          />
-        </div>
-      </div>
+        </Masonry>
+      </ResponsiveMasonry>
+
+      <BorrarComensal id_usuario={id_usuario}/>
     </>
   )
 }

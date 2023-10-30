@@ -1,6 +1,7 @@
 import { BarraDeNavComensal } from '../../../navBar/Index'
 import { useLoaderData } from 'react-router-dom';
 import { FoodCard, InformacionRestaurante } from '../../../componentes/Index';
+import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 
 function PerfilRestauranteVistaComensal() {
     //asigno en datos el objeto que me devuelve useLoaderData()
@@ -25,15 +26,16 @@ function PerfilRestauranteVistaComensal() {
             </nav>
             <br></br>
 
-            <div className='container justify-content-center align-items-center vh-100 bg-white'>
+            <InformacionRestaurante
+                ubicacion={infoRestaurante.ubicacion}
+                horario={infoRestaurante.horario}
+                contacto={infoRestaurante.contacto}
+                descripcion_restaurante={infoRestaurante.descripcion_resto}
+            />
 
-                <InformacionRestaurante
-                    ubicacion={infoRestaurante.ubicacion}
-                    horario={infoRestaurante.horario}
-                    contacto={infoRestaurante.contacto}
-                    descripcion_restaurante={infoRestaurante.descripcion_resto}
-                />
-                <div className='rowComidas row'>
+            <ResponsiveMasonry
+                columnsCountBreakPoints={{ 600: 1, 1220: 2, 1840: 3 }}>
+                <Masonry>
                     {
                         infoComidas.map(unaComida =>
                             <FoodCard
@@ -50,8 +52,8 @@ function PerfilRestauranteVistaComensal() {
                                 borrarComida={false}
                             />)
                     }
-                </div>
-            </div>
+                </Masonry>
+            </ResponsiveMasonry>
         </>
     )
 }

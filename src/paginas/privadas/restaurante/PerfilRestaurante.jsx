@@ -1,3 +1,4 @@
+import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import BorrarRestaurante from '../../../componentes/BorrarRestaurante';
 import { InformacionRestaurante, FoodCard } from '../../../componentes/Index';
 import { BarraDeNavRestaurante } from '../../../navBar/Index';
@@ -20,41 +21,41 @@ function PerfilRestaurante() {
           nombre_restaurante={infoRestaurante.nombre_resto}
         />
       </nav>
+
       <br></br>
 
-      <div className='container justify-content-center align-items-center vh-100 bg-white'>
-
-        <InformacionRestaurante
+      <InformacionRestaurante
           ubicacion={infoRestaurante.ubicacion}
           horario={infoRestaurante.horario}
           contacto={infoRestaurante.contacto}
           descripcion_restaurante={infoRestaurante.descripcion_resto}
         />
-        <div className='rowComidas row'>
-          {
-            infoComidas.map(unaComida =>
-              <FoodCard
-                id={unaComida.id_comida}
-                nombre={unaComida.nombre_comida}
-                descripcion={unaComida.descripcion_comida}
-                precio={unaComida.precio_comida}
-                puntaje={unaComida.promedio_estrellas}
-                puedePuntuar={false}
-                puedeBorrarValoracion={false}
-                puedeEditar={true}
-                linkRestaurante={false}
-                borrarComida={true}
-              />)
-          }
-        </div>
-        <div>
+
+        <ResponsiveMasonry
+          columnsCountBreakPoints={{ 600: 1, 1220: 2, 1840: 3 }}>
+          <Masonry>
+            {
+              infoComidas.map(unaComida =>
+                <FoodCard
+                  id={unaComida.id_comida}
+                  nombre={unaComida.nombre_comida}
+                  descripcion={unaComida.descripcion_comida}
+                  precio={unaComida.precio_comida}
+                  puntaje={unaComida.promedio_estrellas}
+                  puedePuntuar={false}
+                  puedeBorrarValoracion={false}
+                  puedeEditar={true}
+                  linkRestaurante={false}
+                  borrarComida={true}
+                />)
+            }
+          </Masonry>
+        </ResponsiveMasonry>
+
+
           <BorrarRestaurante
             id_usuario={infoRestaurante.id_usuario}
           />
-        </div>
-      </div>
-
-
     </>
   )
 }

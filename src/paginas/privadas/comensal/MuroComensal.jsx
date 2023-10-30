@@ -1,6 +1,7 @@
 import { BarraDeNavComensal } from '../../../navBar/Index'
 import { FoodCard } from '../../../componentes/Index';
 import { useLoaderData } from 'react-router-dom';
+import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 // import { useCallback } from 'react';
 // import crearValoracion from '../../../api/valoraciones/crearValoracion';
 
@@ -24,7 +25,10 @@ function MuroComensal() {
         />
       </nav>
       <br></br>
-      <div className='container foodGrid vh-100 bg-white'>
+
+      <ResponsiveMasonry
+        columnsCountBreakPoints={{ 600: 1, 1220: 2, 1840: 3 }}>
+        <Masonry>
         {infoComidas.map
               (unaComida =>
                 <FoodCard
@@ -41,7 +45,8 @@ function MuroComensal() {
                 />
               )
             }
-      </div>
+        </Masonry>
+      </ResponsiveMasonry>
     </>
   )
 }

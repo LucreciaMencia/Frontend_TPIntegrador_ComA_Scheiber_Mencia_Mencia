@@ -15,9 +15,10 @@ function BorrarComida(props) {
     }
 
     return (
-        <RiDeleteBinLine 
+        <RiDeleteBinLine
+            style={{margin: '10px'}}
             className='basurero'
-            size={25}
+            size={30}
             onClick={onClick}
         />
     )

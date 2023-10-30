@@ -16,8 +16,9 @@ function BorrarValoracion(props) {
 
     return (
         <FaFireExtinguisher
+            style={{margin: '10px'}}
             className='extintor'
-            size={25}
+            size={30}
             onClick={onClick}
         />
     )

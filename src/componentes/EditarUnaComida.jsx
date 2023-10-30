@@ -12,6 +12,7 @@ function EditarUnaComida(props) {
 
     return (
         <GrEdit
+            style={{margin: '10px'}}
             className='editar-comida'
             size={30}
             onClick={onClick}
