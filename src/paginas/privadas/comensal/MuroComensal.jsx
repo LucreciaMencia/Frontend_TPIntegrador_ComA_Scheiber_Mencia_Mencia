@@ -29,6 +29,7 @@ function MuroComensal() {
               (unaComida =>
                 <FoodCard
                   id={unaComida.id_comida}
+                  id_restaurante={unaComida.id_restaurante}
                   nombre={unaComida.nombre_comida}
                   descripcion={unaComida.descripcion_comida}
                   restaurante={unaComida.nombre_resto}

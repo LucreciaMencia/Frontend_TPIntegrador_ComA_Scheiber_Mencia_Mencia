@@ -4,7 +4,6 @@ import borrarComensal from '../api/comensal/borrarComensal'
 
 
 function BorrarComensal(props) {
-    console.log(props.id_usuario)
     const navigate = useNavigate()
 
     function onClick() {

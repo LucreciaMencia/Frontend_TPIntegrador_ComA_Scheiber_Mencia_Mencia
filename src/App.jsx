@@ -9,13 +9,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 import { IniciarSesion, Inicio, InfoDeLaPagina, RecuperarPassword, RegistroComensal, RegistroRestaurante } from './paginas/publicas/Index'
-import { MuroComensal, PerfilComensal, EditarComensal } from './paginas/privadas/comensal/Index'
+import { MuroComensal, PerfilComensal, PerfilRestauranteVistaComensal, EditarComensal } from './paginas/privadas/comensal/Index'
 import { CrearComida, PerfilRestaurante, EditarRestaurante, EditarComida } from './paginas/privadas/restaurante/Index'
 
 //Se agrega loader={} a los componentes que precisan mostrar datos de la BD.
 //se precargan en el loader y luego se pasa a las respectivas rutas
 import { perfilRestauranteLoader, editarRestauranteLoader, editarComidaLoader, crearComidaLoader } from "./paginas/privadas/restaurante/loaders/index";
-import { perfilComensalLoader, muroComensalLoader, editarComensalLoader } from "./paginas/privadas/comensal/loaders/index";
+import { perfilComensalLoader, perfilRestauranteVistaComensalLoader, muroComensalLoader, editarComensalLoader } from "./paginas/privadas/comensal/loaders/index";
 
 
 function App() {
@@ -33,6 +33,7 @@ function App() {
 
         <Route loader={muroComensalLoader} path='/muroComensal' element={<MuroComensal />}></Route>
         <Route loader={perfilComensalLoader} path='/perfilComensal' element={<PerfilComensal />}></Route>
+        <Route loader={perfilRestauranteVistaComensalLoader} path='/perfilRestauranteVistaComensal/:id_restaurante' element={<PerfilRestauranteVistaComensal />}></Route>
         <Route loader={editarComensalLoader} path='/editarComensal' element={<EditarComensal />}></Route>
 
         <Route loader={crearComidaLoader} path='/crearComida' element={<CrearComida />}></Route>

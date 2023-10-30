@@ -28,7 +28,7 @@ function PerfilRestaurante() {
           ubicacion={infoRestaurante.ubicacion}
           horario={infoRestaurante.horario}
           contacto={infoRestaurante.contacto}
-          descripcion_restaurante={infoRestaurante.descripcion}
+          descripcion_restaurante={infoRestaurante.descripcion_resto}
         />
         <div className='rowComidas row'>
           {
